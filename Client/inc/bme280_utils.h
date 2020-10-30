@@ -1,5 +1,5 @@
-#ifndef _BME_UTILS_H_
-#define _BME_UTILS_H_
+#ifndef _BME280_UTILS_H_
+#define _BME280_UTILS_H_
 
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
@@ -124,4 +124,4 @@ int setup_bme280();
  */
 void get_bme280_temperature_humidity();
 
-#endif /* _BME_UTILS_H_ */
+#endif /* _BME280_UTILS_H_ */

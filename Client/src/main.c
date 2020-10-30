@@ -12,24 +12,26 @@ void update_values();
 void send_data();
 
 int main(){
+    printf("Starting BCM...\n");
     if(init_bcm()){
-        printf("Failed to start bcm\n");
+        printf("Failed to start BCM\n");
         exit(-1);
     }
+    printf("BCM started\n");
 
+    printf("Starting BME280...\n");
     if (setup_bme280()){
-        printf("Failed to start bme280\n");
+        printf("Failed to start BME280\n");
         exit(-2);
     }
+    printf("BME280 started\n");
 	
-    // Get SIGALARM
+    printf("Handling signals...\n");
     signal(SIGALRM, sig_handler);
-
-    // SIGALARM every 1 sec
     ualarm(1000000, 1000000);
-
-    sig_handler(SIGALRM);
+    printf("All good to go\n");
 	
+    sig_handler(SIGALRM);
     return 0;
 }
 
@@ -50,7 +52,8 @@ void update_values(double *humidity, double *temperature, int presence[], int op
 }
 
 void send_data(double *humidity, double *temperature, int presence[], int openning[]){
-    printf("H %lf\nT %lf\n", *humidity, *temperature);
+    // TODO send data to central server
+    printf("H %.2lf\nT %.2lf\n", *humidity, *temperature);
     for(int i = 0; i < *(&presence + 1) - presence; i++){
         printf("P%d %d\n", i+1, presence[i]);
     }
