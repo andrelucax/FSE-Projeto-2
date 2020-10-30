@@ -38,6 +38,9 @@ int outp_device_on_off(int device_type, int device_id, int on_off){
         else if(device_id == 2){
             bcm2835_gpio_write(AIR2, on_off);
         }
+        else{
+            return 2;
+        }
     }
     else if(device_type == LAMP){
         if(device_id == 1){
@@ -52,6 +55,12 @@ int outp_device_on_off(int device_type, int device_id, int on_off){
         else if(device_id == 4){
             bcm2835_gpio_write(LAMP4, on_off);
         }
+        else{
+            return 3;
+        }
+    }
+    else{
+        return 4;
     }
 
     return 0;
