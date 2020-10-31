@@ -10,10 +10,8 @@ WINDOW *menuBoxWindow;
 WINDOW *inputWindow;
 WINDOW *inputBoxWindow;
 
-WINDOW *room1Window;
-WINDOW *room1BoxWindow;
-WINDOW *room2Window;
-WINDOW *room2BoxWindow;
+WINDOW *sensorhtWindow;
+WINDOW *sensorhtBoxWindow;
 
 WINDOW *lamp1Window;
 WINDOW *lamp1BoxWindow;
@@ -23,10 +21,11 @@ WINDOW *lamp3Window;
 WINDOW *lamp3BoxWindow;
 WINDOW *lamp4Window;
 WINDOW *lamp4BoxWindow;
-WINDOW *lamp5Window;
-WINDOW *lamp5BoxWindow;
-WINDOW *lamp6Window;
-WINDOW *lamp6BoxWindow;
+
+WINDOW *air1Window;
+WINDOW *air1BoxWindow;
+WINDOW *air2Window;
+WINDOW *air2BoxWindow;
 
 WINDOW *presenceSensor1Window;
 WINDOW *presenceSensor1BoxWindow;
@@ -75,42 +74,46 @@ int init_screens()
     inputWindow = create_newwin(3, COLS / 2, LINES - 3, 0, 0);
     inputBoxWindow = create_newwin(3, COLS / 2, LINES - 3, 0, 1);
 
-    room1Window = create_newwin(5, COLS / 2, 0, COLS / 2, 0);
-    room1BoxWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 1);
-    room2Window = create_newwin(5, COLS / 2, 5, COLS / 2, 0);
-    room2BoxWindow = create_newwin(5, COLS / 2, 5, COLS / 2, 1);
+    sensorhtWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 0);
+    sensorhtWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 1);
 
-    lamp1Window = create_newwin(3, COLS / 4, 10, COLS / 2, 0);
-    lamp1BoxWindow = create_newwin(3, COLS / 4, 10, COLS / 2, 1);
-    lamp2Window = create_newwin(3, COLS / 4 - 1, 10, COLS / 4 * 3 + 1, 0);
-    lamp2BoxWindow = create_newwin(3, COLS / 4 - 1, 10, COLS / 4 * 3 + 1, 1);
-    lamp3Window = create_newwin(3, COLS / 4, 13, COLS / 2, 0);
-    lamp3BoxWindow = create_newwin(3, COLS / 4, 13, COLS / 2, 1);
-    lamp4Window = create_newwin(3, COLS / 4 - 1, 13, COLS / 4 * 3 + 1, 0);
-    lamp4BoxWindow = create_newwin(3, COLS / 4 - 1, 13, COLS / 4 * 3 + 1, 1);
+    lamp1Window = create_newwin(3, COLS / 4, 5, COLS / 2, 0);
+    lamp1BoxWindow = create_newwin(3, COLS / 4, 5, COLS / 2, 1);
+    lamp2Window = create_newwin(3, COLS / 4 - 1, 5, COLS / 4 * 3 + 1, 0);
+    lamp2BoxWindow = create_newwin(3, COLS / 4 - 1, 5, COLS / 4 * 3 + 1, 1);
+    lamp3Window = create_newwin(3, COLS / 4, 8, COLS / 2, 0);
+    lamp3BoxWindow = create_newwin(3, COLS / 4, 8, COLS / 2, 1);
+    lamp4Window = create_newwin(3, COLS / 4 - 1, 8, COLS / 4 * 3 + 1, 0);
+    lamp4BoxWindow = create_newwin(3, COLS / 4 - 1, 8, COLS / 4 * 3 + 1, 1);
 
-    presenceSensor1Window = create_newwin(3, COLS / 4, 16, COLS / 2, 0);
-    presenceSensor1BoxWindow = create_newwin(3, COLS / 4, 16, COLS / 2, 1);
-    presenceSensor2Window = create_newwin(3, COLS / 4 - 1, 16, COLS / 4 * 3 + 1, 0);
-    presenceSensor2BoxWindow = create_newwin(3, COLS / 4 - 1, 16, COLS / 4 * 3 + 1, 1);
+    air1Window = create_newwin(3, COLS / 4, 11, COLS / 2, 0);
+    air1BoxWindow = create_newwin(3, COLS / 4, 11, COLS / 2, 1);
+    air2Window = create_newwin(3, COLS / 4 - 1, 11, COLS / 4 * 3 + 1, 0);
+    air2BoxWindow = create_newwin(3, COLS / 4 - 1, 11, COLS / 4 * 3 + 1, 1);
 
-    openning1Window = create_newwin(3, COLS / 4, 19, COLS / 2, 0);
-    openning1BoxWindow = create_newwin(3, COLS / 4, 19, COLS / 2, 1);
-    openning2Window = create_newwin(3, COLS / 4 - 1, 19, COLS / 4 * 3 + 1, 0);
-    openning2BoxWindow = create_newwin(3, COLS / 4 - 1, 19, COLS / 4 * 3 + 1, 1);
-    openning3Window = create_newwin(3, COLS / 4, 22, COLS / 2, 0);
-    openning3BoxWindow = create_newwin(3, COLS / 4, 22, COLS / 2, 1);
-    openning4Window = create_newwin(3, COLS / 4 - 1, 22, COLS / 4 * 3 + 1, 0);
-    openning4BoxWindow = create_newwin(3, COLS / 4 - 1, 22, COLS / 4 * 3 + 1, 1);
-    openning5Window = create_newwin(3, COLS / 4, 25, COLS / 2, 0);
-    openning5BoxWindow = create_newwin(3, COLS / 4, 25, COLS / 2, 1);
-    openning6Window = create_newwin(3, COLS / 4 - 1, 25, COLS / 4 * 3 + 1, 0);
-    openning6BoxWindow = create_newwin(3, COLS / 4 - 1, 25, COLS / 4 * 3 + 1, 1);
+    presenceSensor1Window = create_newwin(3, COLS / 4, 14, COLS / 2, 0);
+    presenceSensor1BoxWindow = create_newwin(3, COLS / 4, 14, COLS / 2, 1);
+    presenceSensor2Window = create_newwin(3, COLS / 4 - 1, 14, COLS / 4 * 3 + 1, 0);
+    presenceSensor2BoxWindow = create_newwin(3, COLS / 4 - 1, 14, COLS / 4 * 3 + 1, 1);
 
-    alarmWindow = create_newwin(LINES - 28, COLS / 2, 28, COLS / 2, 0);
-    alarmBoxWindow = create_newwin(LINES - 28, COLS / 2, 28, COLS / 2, 1);
+    openning1Window = create_newwin(3, COLS / 4, 17, COLS / 2, 0);
+    openning1BoxWindow = create_newwin(3, COLS / 4, 17, COLS / 2, 1);
+    openning2Window = create_newwin(3, COLS / 4 - 1, 17, COLS / 4 * 3 + 1, 0);
+    openning2BoxWindow = create_newwin(3, COLS / 4 - 1, 17, COLS / 4 * 3 + 1, 1);
+    openning3Window = create_newwin(3, COLS / 4, 20, COLS / 2, 0);
+    openning3BoxWindow = create_newwin(3, COLS / 4, 20, COLS / 2, 1);
+    openning4Window = create_newwin(3, COLS / 4 - 1, 20, COLS / 4 * 3 + 1, 0);
+    openning4BoxWindow = create_newwin(3, COLS / 4 - 1, 20, COLS / 4 * 3 + 1, 1);
+    openning5Window = create_newwin(3, COLS / 4, 23, COLS / 2, 0);
+    openning5BoxWindow = create_newwin(3, COLS / 4, 23, COLS / 2, 1);
+    openning6Window = create_newwin(3, COLS / 4 - 1, 23, COLS / 4 * 3 + 1, 0);
+    openning6BoxWindow = create_newwin(3, COLS / 4 - 1, 23, COLS / 4 * 3 + 1, 1);
+
+    alarmWindow = create_newwin(LINES - 26, COLS / 2, 26, COLS / 2, 0);
+    alarmBoxWindow = create_newwin(LINES - 26, COLS / 2, 26, COLS / 2, 1);
 
     print_menu();
+    print_waiting_for_client();
 
     return 0;
 }
@@ -123,10 +126,8 @@ void finish_screens(int goodbye)
     delwin(inputWindow);
     delwin(inputBoxWindow);
 
-    delwin(room1Window);
-    delwin(room1BoxWindow);
-    delwin(room2Window);
-    delwin(room2BoxWindow);
+    delwin(sensorhtWindow);
+    delwin(sensorhtBoxWindow);
 
     delwin(lamp1Window);
     delwin(lamp1BoxWindow);
@@ -136,10 +137,11 @@ void finish_screens(int goodbye)
     delwin(lamp3BoxWindow);
     delwin(lamp4Window);
     delwin(lamp4BoxWindow);
-    delwin(lamp5Window);
-    delwin(lamp5BoxWindow);
-    delwin(lamp6Window);
-    delwin(lamp6BoxWindow);
+
+    delwin(air1Window);
+    delwin(air1BoxWindow);
+    delwin(air2Window);
+    delwin(air2BoxWindow);
 
     delwin(presenceSensor1Window);
     delwin(presenceSensor1BoxWindow);
@@ -203,40 +205,6 @@ void messageGoodBye()
     mvprintw(LINES / 2, COLS / 2 - strlen(exitMsg) / 2, exitMsg);
 }
 
-// void get_input_temperature(double *new_referencetemperature)
-// {
-//     echo();
-
-//     wclear(inputWindow);
-
-//     mvwprintw(inputWindow, 0, 0, "Type new reference temperature > ");
-
-//     wscanw(inputWindow, "%lf", new_referencetemperature);
-
-//     noecho();
-
-//     wclear(inputWindow);
-
-//     wrefresh(inputWindow);
-// }
-
-// void get_input_histeresis(double *new_histeresis)
-// {
-//     echo();
-
-//     wclear(inputWindow);
-
-//     mvwprintw(inputWindow, 0, 0, "Type new histeresis temperature > ");
-
-//     wscanw(inputWindow, "%lf", new_histeresis);
-
-//     noecho();
-
-//     wclear(inputWindow);
-
-//     wrefresh(inputWindow);
-// }
-
 void print_menu()
 {
     wclear(menuWindow);
@@ -252,6 +220,54 @@ void print_menu()
     wrefresh(menuWindow);
 }
 
+void print_waiting_for_client(){
+    wclear(sensorhtWindow);
+    wclear(lamp1Window);
+    wclear(lamp2Window);
+    wclear(lamp3Window);
+    wclear(lamp4Window);
+    wclear(air1Window);
+    wclear(air2Window);
+    wclear(presenceSensor1Window);
+    wclear(presenceSensor2Window);
+    wclear(openning1Window);
+    wclear(openning2Window);
+    wclear(openning3Window);
+    wclear(openning4Window);
+    wclear(openning5Window);
+    wclear(openning6Window);
+    mvwprintw(sensorhtWindow, 0, 0, "Waiting for client");
+    mvwprintw(lamp1Window, 0, 0, "Waiting for client");
+    mvwprintw(lamp2Window, 0, 0, "Waiting for client");
+    mvwprintw(lamp3Window, 0, 0, "Waiting for client");
+    mvwprintw(lamp4Window, 0, 0, "Waiting for client");
+    mvwprintw(air1Window, 0, 0, "Waiting for client");
+    mvwprintw(air2Window, 0, 0, "Waiting for client");
+    mvwprintw(presenceSensor1Window, 0, 0, "Waiting for client");
+    mvwprintw(presenceSensor2Window, 0, 0, "Waiting for client");
+    mvwprintw(openning1Window, 0, 0, "Waiting for client");
+    mvwprintw(openning2Window, 0, 0, "Waiting for client");
+    mvwprintw(openning3Window, 0, 0, "Waiting for client");
+    mvwprintw(openning4Window, 0, 0, "Waiting for client");
+    mvwprintw(openning5Window, 0, 0, "Waiting for client");
+    mvwprintw(openning6Window, 0, 0, "Waiting for client");
+    wrefresh(sensorhtWindow);
+    wrefresh(lamp1Window);
+    wrefresh(lamp2Window);
+    wrefresh(lamp3Window);
+    wrefresh(lamp4Window);
+    wrefresh(air1Window);
+    wrefresh(air2Window);
+    wrefresh(presenceSensor1Window);
+    wrefresh(presenceSensor2Window);
+    wrefresh(openning1Window);
+    wrefresh(openning2Window);
+    wrefresh(openning3Window);
+    wrefresh(openning4Window);
+    wrefresh(openning5Window);
+    wrefresh(openning6Window);
+}
+
 void print_error(){
     wclear(inputWindow);
 
@@ -261,6 +277,8 @@ void print_error(){
 }
 
 int get_device_id(int device_type){
+    echo();
+
     wclear(inputWindow);
 
     int device_id = 0;
@@ -277,73 +295,7 @@ int get_device_id(int device_type){
     wrefresh(inputWindow);
     wscanw(inputWindow, "%d", &device_id);
 
+    no_echo();
+
     return device_id;
 }
-
-// void print_messages(char message1[], char message2[], char message3[])
-// {
-//     wclear(messageWindow);
-
-//     mvwprintw(messageWindow, 0, 0, message1);
-//     mvwprintw(messageWindow, 1, 0, message2);
-//     mvwprintw(messageWindow, 2, 0, message3);
-
-//     wrefresh(messageWindow);
-// }
-
-// void update_messages(int mode, double referencetemperature, double histeresis)
-// {
-//     char str_referencetemperature[500] = "* To set mode: F2 or F3 (see options above)";
-//     char str_histeresis[500] = "* To set histeresis: F4";
-
-//     if (referencetemperature != DBL_MAX)
-//     {
-//         char newstr_reference_temperature[500] = "";
-//         sprintf(newstr_reference_temperature, "Reference temperature: %.2lf", referencetemperature);
-//         strcpy(str_referencetemperature, newstr_reference_temperature);
-//     }
-//     if (histeresis != DBL_MAX)
-//     {
-//         char newstr_histeresis[500] = "";
-//         sprintf(newstr_histeresis, "Histeresis: %.2lf", histeresis);
-//         strcpy(str_histeresis, newstr_histeresis);
-//     }
-
-//     if (mode == 0)
-//     {
-//         print_messages("To start the app please select mode and histeresis", str_referencetemperature, str_histeresis);
-//     }
-//     else if (mode == 1)
-//     {
-//         print_messages("Type: potenciometer", str_referencetemperature, str_histeresis);
-//     }
-//     else if (mode == 2)
-//     {
-//         print_messages("Type: keyboard input", str_referencetemperature, str_histeresis);
-//     }
-// }
-
-// void print_sensors_data(char str_to_print[])
-// {
-//     wmove(sensorsDataWindow, nextLineSensorsData, 0);
-//     wclrtoeol(sensorsDataWindow);
-//     wrefresh(sensorsDataWindow);
-
-//     mvwprintw(sensorsDataWindow, nextLineSensorsData, 0, str_to_print);
-//     wrefresh(sensorsDataWindow);
-
-//     if (nextLineSensorsData == LINES - 2)
-//     {
-//         nextLineSensorsData = 0;
-//         wmove(sensorsDataWindow, nextLineSensorsData, 0);
-//         wclrtoeol(sensorsDataWindow);
-//         wrefresh(sensorsDataWindow);
-//     }
-//     else
-//     {
-//         wmove(sensorsDataWindow, nextLineSensorsData + 1, 0);
-//         wclrtoeol(sensorsDataWindow);
-//         wrefresh(sensorsDataWindow);
-//         nextLineSensorsData++;
-//     }
-// }
