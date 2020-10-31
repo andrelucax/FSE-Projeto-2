@@ -1,6 +1,7 @@
 #include "data_utils.h"
 #include "gpio_utils.h"
 #include "bme280_utils.h"
+#include "tcp_client.h"
 
 void update_values(double *humidity, double *temperature, int presence[], int openning[]){
     get_bme280_temperature_humidity(temperature, humidity);
@@ -8,13 +9,9 @@ void update_values(double *humidity, double *temperature, int presence[], int op
     get_inpt_device_on_off(presence, openning);
 }
 
-void send_data(double *humidity, double *temperature, int presence[], int openning[]){
-    // TODO send data to central server
-    printf("H %.2lf\nT %.2lf\n", *humidity, *temperature);
-    for(int i = 0; i < 2; i++){
-        printf("P%d %d\n", i+1, presence[i]);
+int send_data(double *humidity, double *temperature, int presence[], int openning[]){
+    if (send_message_to_server(humidity, temperature, presence, openning)){
+        return 1;
     }
-    for(int i = 0; i < 6; i++){
-        printf("O%d %d\n", i+1, openning[i]);
-    }
+    return 0;
 }

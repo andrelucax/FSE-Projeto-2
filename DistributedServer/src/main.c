@@ -12,8 +12,6 @@
 #include "tcp_server.h"
 
 void sig_handler(int signum);
-void update_values();
-void send_data();
 void before_exit();
 void *handle_send_data();
 
@@ -51,20 +49,16 @@ int main(){
         exit(-3);
     }
 
-    printf("Starting threads\n");
-    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL))
-    {
-        printf("Fail to create TCP server thread");
+    printf("Starting threads...\n");
+    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL)){
+        printf("Failed to create TCP server thread");
         exit(-4);
     }
-    if (pthread_create(&thread_tcp_client, NULL, handle_send_data, NULL))
-    {
-        printf("Fail to create TCP server thread");
+    if (pthread_create(&thread_tcp_client, NULL, handle_send_data, NULL)){
+        printf("Failed to create TCP server thread");
         exit(-4);
     }
     sem_init(&sem_send_data, 0, 0);
-
-    printf("Running\n");
 
     pthread_join(thread_tcp_server, NULL);
 
@@ -78,8 +72,12 @@ void *handle_send_data(){
         sem_wait(&sem_send_data);
         double humidity = 0, temperature = 0;
         int presence[2], openning[6];
+        printf("Updating values...\n");
         update_values(&humidity, &temperature, presence, openning);
-        send_data(&humidity, &temperature, presence, openning);
+        printf("Sending data...\n");
+        if (send_data(&humidity, &temperature, presence, openning)){
+            printf("Failed to send data\n");
+        }
     }
 }
 
