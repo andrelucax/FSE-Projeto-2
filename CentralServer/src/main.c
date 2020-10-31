@@ -39,6 +39,7 @@ void *watch_userinput(){
         }
         else if (menuOption == KEY_F(3)){
             // Turn lamp off
+            send_message_to_server(LAMP, 1, OFF);
         }
         else if (menuOption == KEY_F(4)){
             // Turn air on

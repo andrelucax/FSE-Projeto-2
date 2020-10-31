@@ -8,9 +8,9 @@
 #include "tcp_client.h"
 
 int client_socket;
+struct sockaddr_in server_addr;
 
 int init_tcp_client() {
-	struct sockaddr_in server_addr;
 	unsigned short server_port;
 	char *server_IP;
 
@@ -26,11 +26,6 @@ int init_tcp_client() {
 	server_addr.sin_family = AF_INET;
 	server_addr.sin_addr.s_addr = inet_addr(server_IP);
 	server_addr.sin_port = htons(server_port);
-
-	// Connect
-	if(connect(client_socket, (struct sockaddr *) &server_addr, 
-							sizeof(server_addr)) < 0)
-		return 2;
 
 	// tamanhoMensagem = strlen(mensagem);
 
@@ -52,6 +47,11 @@ int init_tcp_client() {
 }
 
 int send_message_to_server(int device_type, int device_id, int on_off){
+	// Connect
+	if(connect(client_socket, (struct sockaddr *) &server_addr, 
+							sizeof(server_addr)) < 0)
+		return 1;
+
     int is_ok = 1;
     if(send(client_socket, (void *) &device_type, sizeof(int), 0) < 0)
 		is_ok = 0;
@@ -68,12 +68,14 @@ int send_message_to_server(int device_type, int device_id, int on_off){
     }
 
     if(!is_ok){
-        return 1;
+        return 2;
     }
 
 	if(server_ans){
-		return 2;
+		return 3;
 	}
+
+	close(client_socket);
 
     return 0;
 }
