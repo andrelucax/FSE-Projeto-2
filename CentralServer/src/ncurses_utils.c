@@ -10,43 +10,8 @@ WINDOW *menuBoxWindow;
 WINDOW *inputWindow;
 WINDOW *inputBoxWindow;
 
-WINDOW *sensorhtWindow;
-WINDOW *sensorhtBoxWindow;
-
-WINDOW *lamp1Window;
-WINDOW *lamp1BoxWindow;
-WINDOW *lamp2Window;
-WINDOW *lamp2BoxWindow;
-WINDOW *lamp3Window;
-WINDOW *lamp3BoxWindow;
-WINDOW *lamp4Window;
-WINDOW *lamp4BoxWindow;
-
-WINDOW *air1Window;
-WINDOW *air1BoxWindow;
-WINDOW *air2Window;
-WINDOW *air2BoxWindow;
-
-WINDOW *presenceSensor1Window;
-WINDOW *presenceSensor1BoxWindow;
-WINDOW *presenceSensor2Window;
-WINDOW *presenceSensor2BoxWindow;
-
-WINDOW *openning1Window;
-WINDOW *openning1BoxWindow;
-WINDOW *openning2Window;
-WINDOW *openning2BoxWindow;
-WINDOW *openning3Window;
-WINDOW *openning3BoxWindow;
-WINDOW *openning4Window;
-WINDOW *openning4BoxWindow;
-WINDOW *openning5Window;
-WINDOW *openning5BoxWindow;
-WINDOW *openning6Window;
-WINDOW *openning6BoxWindow;
-
-WINDOW *alarmWindow;
-WINDOW *alarmBoxWindow;
+WINDOW *dataWindow;
+WINDOW *dataBoxWindow;
 
 int init_screens()
 {
@@ -74,43 +39,8 @@ int init_screens()
     inputWindow = create_newwin(3, COLS / 2, LINES - 3, 0, 0);
     inputBoxWindow = create_newwin(3, COLS / 2, LINES - 3, 0, 1);
 
-    sensorhtWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 0);
-    sensorhtBoxWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 1);
-
-    lamp1Window = create_newwin(3, COLS / 4, 5, COLS / 2, 0);
-    lamp1BoxWindow = create_newwin(3, COLS / 4, 5, COLS / 2, 1);
-    lamp2Window = create_newwin(3, COLS / 4 - 1, 5, COLS / 4 * 3 + 1, 0);
-    lamp2BoxWindow = create_newwin(3, COLS / 4 - 1, 5, COLS / 4 * 3 + 1, 1);
-    lamp3Window = create_newwin(3, COLS / 4, 8, COLS / 2, 0);
-    lamp3BoxWindow = create_newwin(3, COLS / 4, 8, COLS / 2, 1);
-    lamp4Window = create_newwin(3, COLS / 4 - 1, 8, COLS / 4 * 3 + 1, 0);
-    lamp4BoxWindow = create_newwin(3, COLS / 4 - 1, 8, COLS / 4 * 3 + 1, 1);
-
-    air1Window = create_newwin(3, COLS / 4, 11, COLS / 2, 0);
-    air1BoxWindow = create_newwin(3, COLS / 4, 11, COLS / 2, 1);
-    air2Window = create_newwin(3, COLS / 4 - 1, 11, COLS / 4 * 3 + 1, 0);
-    air2BoxWindow = create_newwin(3, COLS / 4 - 1, 11, COLS / 4 * 3 + 1, 1);
-
-    presenceSensor1Window = create_newwin(3, COLS / 4, 14, COLS / 2, 0);
-    presenceSensor1BoxWindow = create_newwin(3, COLS / 4, 14, COLS / 2, 1);
-    presenceSensor2Window = create_newwin(3, COLS / 4 - 1, 14, COLS / 4 * 3 + 1, 0);
-    presenceSensor2BoxWindow = create_newwin(3, COLS / 4 - 1, 14, COLS / 4 * 3 + 1, 1);
-
-    openning1Window = create_newwin(3, COLS / 4, 17, COLS / 2, 0);
-    openning1BoxWindow = create_newwin(3, COLS / 4, 17, COLS / 2, 1);
-    openning2Window = create_newwin(3, COLS / 4 - 1, 17, COLS / 4 * 3 + 1, 0);
-    openning2BoxWindow = create_newwin(3, COLS / 4 - 1, 17, COLS / 4 * 3 + 1, 1);
-    openning3Window = create_newwin(3, COLS / 4, 20, COLS / 2, 0);
-    openning3BoxWindow = create_newwin(3, COLS / 4, 20, COLS / 2, 1);
-    openning4Window = create_newwin(3, COLS / 4 - 1, 20, COLS / 4 * 3 + 1, 0);
-    openning4BoxWindow = create_newwin(3, COLS / 4 - 1, 20, COLS / 4 * 3 + 1, 1);
-    openning5Window = create_newwin(3, COLS / 4, 23, COLS / 2, 0);
-    openning5BoxWindow = create_newwin(3, COLS / 4, 23, COLS / 2, 1);
-    openning6Window = create_newwin(3, COLS / 4 - 1, 23, COLS / 4 * 3 + 1, 0);
-    openning6BoxWindow = create_newwin(3, COLS / 4 - 1, 23, COLS / 4 * 3 + 1, 1);
-
-    alarmWindow = create_newwin(LINES - 26, COLS / 2, 26, COLS / 2, 0);
-    alarmBoxWindow = create_newwin(LINES - 26, COLS / 2, 26, COLS / 2, 1);
+    dataWindow = create_newwin(LINES, COLS / 2, 0, COLS / 2, 0);
+    dataBoxWindow = create_newwin(LINES, COLS / 2, 0, COLS / 2, 1);
 
     print_menu();
     print_waiting_for_client();
@@ -126,43 +56,8 @@ void finish_screens(int goodbye)
     delwin(inputWindow);
     delwin(inputBoxWindow);
 
-    delwin(sensorhtWindow);
-    delwin(sensorhtBoxWindow);
-
-    delwin(lamp1Window);
-    delwin(lamp1BoxWindow);
-    delwin(lamp2Window);
-    delwin(lamp2BoxWindow);
-    delwin(lamp3Window);
-    delwin(lamp3BoxWindow);
-    delwin(lamp4Window);
-    delwin(lamp4BoxWindow);
-
-    delwin(air1Window);
-    delwin(air1BoxWindow);
-    delwin(air2Window);
-    delwin(air2BoxWindow);
-
-    delwin(presenceSensor1Window);
-    delwin(presenceSensor1BoxWindow);
-    delwin(presenceSensor2Window);
-    delwin(presenceSensor2BoxWindow);
-
-    delwin(openning1Window);
-    delwin(openning1BoxWindow);
-    delwin(openning2Window);
-    delwin(openning2BoxWindow);
-    delwin(openning3Window);
-    delwin(openning3BoxWindow);
-    delwin(openning4Window);
-    delwin(openning4BoxWindow);
-    delwin(openning5Window);
-    delwin(openning5BoxWindow);
-    delwin(openning6Window);
-    delwin(openning6BoxWindow);
-
-    delwin(alarmWindow);
-    delwin(alarmBoxWindow);
+    delwin(dataWindow);
+    delwin(dataBoxWindow);
 
     if (goodbye)
     {
@@ -221,51 +116,9 @@ void print_menu()
 }
 
 void print_waiting_for_client(){
-    wclear(sensorhtWindow);
-    wclear(lamp1Window);
-    wclear(lamp2Window);
-    wclear(lamp3Window);
-    wclear(lamp4Window);
-    wclear(air1Window);
-    wclear(air2Window);
-    wclear(presenceSensor1Window);
-    wclear(presenceSensor2Window);
-    wclear(openning1Window);
-    wclear(openning2Window);
-    wclear(openning3Window);
-    wclear(openning4Window);
-    wclear(openning5Window);
-    wclear(openning6Window);
-    mvwprintw(sensorhtWindow, 0, 0, "Waiting for client");
-    mvwprintw(lamp1Window, 0, 0, "Waiting for client");
-    mvwprintw(lamp2Window, 0, 0, "Waiting for client");
-    mvwprintw(lamp3Window, 0, 0, "Waiting for client");
-    mvwprintw(lamp4Window, 0, 0, "Waiting for client");
-    mvwprintw(air1Window, 0, 0, "Waiting for client");
-    mvwprintw(air2Window, 0, 0, "Waiting for client");
-    mvwprintw(presenceSensor1Window, 0, 0, "Waiting for client");
-    mvwprintw(presenceSensor2Window, 0, 0, "Waiting for client");
-    mvwprintw(openning1Window, 0, 0, "Waiting for client");
-    mvwprintw(openning2Window, 0, 0, "Waiting for client");
-    mvwprintw(openning3Window, 0, 0, "Waiting for client");
-    mvwprintw(openning4Window, 0, 0, "Waiting for client");
-    mvwprintw(openning5Window, 0, 0, "Waiting for client");
-    mvwprintw(openning6Window, 0, 0, "Waiting for client");
-    wrefresh(sensorhtWindow);
-    wrefresh(lamp1Window);
-    wrefresh(lamp2Window);
-    wrefresh(lamp3Window);
-    wrefresh(lamp4Window);
-    wrefresh(air1Window);
-    wrefresh(air2Window);
-    wrefresh(presenceSensor1Window);
-    wrefresh(presenceSensor2Window);
-    wrefresh(openning1Window);
-    wrefresh(openning2Window);
-    wrefresh(openning3Window);
-    wrefresh(openning4Window);
-    wrefresh(openning5Window);
-    wrefresh(openning6Window);
+    wclear(dataWindow);
+    mvwprintw(dataWindow, 0, 0, "Waiting for client");
+    wrefresh(dataWindow);
 }
 
 void print_error(){
@@ -300,95 +153,17 @@ int get_device_id(int device_type){
     return device_id;
 }
 
-void update_t_h(double temperature, double humidity){
-    wclear(sensorhtWindow);
+void update_values(double temperature, double humidity, int presence[], int openning[]){
+    mvwprintw(dataWindow, 0, 0, "Temperature: %.2lf                  ", temperature);
+    mvwprintw(dataWindow, 1, 0, "Humidity: %.2lf                     ", humidity);
+    mvwprintw(dataWindow, 2, 0, "Presence living room: %d            ", presence[0]);
+    mvwprintw(dataWindow, 3, 0, "Presence kitchen: %d                ", presence[1]);
+    mvwprintw(dataWindow, 2, 0, "Kitchen door: %d                    ", openning[0]);
+    mvwprintw(dataWindow, 3, 0, "Kitchen window: %d                  ", openning[1]);
+    mvwprintw(dataWindow, 2, 0, "Living room door: %d                ", openning[2]);
+    mvwprintw(dataWindow, 3, 0, "Living room window: %d              ", openning[3]);
+    mvwprintw(dataWindow, 2, 0, "Bedroom 1 window: %d                ", openning[4]);
+    mvwprintw(dataWindow, 3, 0, "Bedroom 2 window: %d                ", openning[5]);
 
-    if(temperature > 0){
-        mvwprintw(sensorhtWindow, 0, 0, "%d", temperature);
-    }
-    if(humidity > 0){
-        mvwprintw(sensorhtWindow, 1, 0, "%d", humidity);
-    }
-
-    wrefresh(sensorhtWindow);
-}
-
-void update_presence(int presence[]){
-    wclear(presenceSensor1Window);
-    wclear(presenceSensor2Window);
-
-    if(presence[0] == ON){
-        mvwprintw(presenceSensor1Window, 0, 0, "Living room: detected");
-    }
-    else{
-        mvwprintw(presenceSensor1Window, 0, 0, "Living room: nothing");
-    }
-
-    if(presence[1] == ON){
-        mvwprintw(presenceSensor2Window, 0, 0, "Kitchen: detected");
-    }
-    else{
-        mvwprintw(presenceSensor2Window, 0, 0, "Kitchen: nothing");
-    }
-
-    wrefresh(presenceSensor1Window);
-    wrefresh(presenceSensor2Window);
-}
-
-void update_openning(int openning[]){
-    wclear(openning1Window);
-    wclear(openning2Window);
-    wclear(openning3Window);
-    wclear(openning4Window);
-    wclear(openning5Window);
-    wclear(openning6Window);
-
-    if(openning[0] == ON){
-        mvwprintw(openning1Window, 0, 0, "Kitchen door: detected");
-    }
-    else{
-        mvwprintw(openning1Window, 0, 0, "Kitchen door: nothing");
-    }
-
-    if(openning[1] == ON){
-        mvwprintw(openning2Window, 0, 0, "Kitchen window: detected");
-    }
-    else{
-        mvwprintw(openning2Window, 0, 0, "Kitchen window: nothing");
-    }
-
-    if(openning[2] == ON){
-        mvwprintw(openning3Window, 0, 0, "Living room door: detected");
-    }
-    else{
-        mvwprintw(openning3Window, 0, 0, "Living room door: nothing");
-    }
-
-    if(openning[3] == ON){
-        mvwprintw(openning4Window, 0, 0, "Living room window: detected");
-    }
-    else{
-        mvwprintw(openning4Window, 0, 0, "Living room window: nothing");
-    }
-
-    if(openning[4] == ON){
-        mvwprintw(openning5Window, 0, 0, "Room 1 window: detected");
-    }
-    else{
-        mvwprintw(openning5Window, 0, 0, "Room 1 window: nothing");
-    }
-
-    if(openning[5] == ON){
-        mvwprintw(openning6Window, 0, 0, "Room 2 window: detected");
-    }
-    else{
-        mvwprintw(openning6Window, 0, 0, "Room 2 window: nothing");
-    }
-
-    wrefresh(openning1Window);
-    wrefresh(openning2Window);
-    wrefresh(openning3Window);
-    wrefresh(openning4Window);
-    wrefresh(openning5Window);
-    wrefresh(openning6Window);
+    wrefresh(dataWindow);
 }
