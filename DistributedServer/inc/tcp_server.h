@@ -1,7 +1,7 @@
 #ifndef _TCP_SERVER_H_
 #define _TCP_SERVER_H_
 
-#define SERVER_PORT 10129
+#define MY_SERVER_PORT 10129
 
 int init_tcp_server();
 void *handle_tcp_client();
