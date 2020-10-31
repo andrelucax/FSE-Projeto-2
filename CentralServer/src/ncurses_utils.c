@@ -75,7 +75,7 @@ int init_screens()
     inputBoxWindow = create_newwin(3, COLS / 2, LINES - 3, 0, 1);
 
     sensorhtWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 0);
-    sensorhtWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 1);
+    sensorhtBoxWindow = create_newwin(5, COLS / 2, 0, COLS / 2, 1);
 
     lamp1Window = create_newwin(3, COLS / 4, 5, COLS / 2, 0);
     lamp1BoxWindow = create_newwin(3, COLS / 4, 5, COLS / 2, 1);
