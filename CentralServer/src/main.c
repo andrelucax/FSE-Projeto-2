@@ -32,6 +32,8 @@ int main(){
 
     pthread_join(thread_userinput, NULL);
 
+    pthread_cancel(thread_tcp_server);
+
     close_socket();
     close_sockets();
     finish_screens(1);
