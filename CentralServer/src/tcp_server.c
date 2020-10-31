@@ -54,6 +54,7 @@ int wait_for_client(){
 }
 
 void *handle_tcp_client() {
+	endwin();
 	while(1){
 		if(wait_for_client()){
 			continue;
@@ -82,8 +83,14 @@ void *handle_tcp_client() {
 			update_openning(openning);
 		}
 
-		printf("%lf\n", humidity);
-		printf("%lf\n", temperature);
+		printf("%.2lf\n", humidity);
+		printf("%.2lf\n", temperature);
+		for(int i = 0; i < 2; i++){
+			printf("%d\n", presence[i]);
+		}
+		for(int i = 0; i < 6; i++){
+			printf("%d\n", openning[i]);
+		}
 
 		close(client_socket);
 	}
