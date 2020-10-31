@@ -158,12 +158,12 @@ void update_values(double temperature, double humidity, int presence[], int open
     mvwprintw(dataWindow, 1, 0, "Humidity: %.2lf                     ", humidity);
     mvwprintw(dataWindow, 2, 0, "Presence living room: %d            ", presence[0]);
     mvwprintw(dataWindow, 3, 0, "Presence kitchen: %d                ", presence[1]);
-    mvwprintw(dataWindow, 2, 0, "Kitchen door: %d                    ", openning[0]);
-    mvwprintw(dataWindow, 3, 0, "Kitchen window: %d                  ", openning[1]);
-    mvwprintw(dataWindow, 2, 0, "Living room door: %d                ", openning[2]);
-    mvwprintw(dataWindow, 3, 0, "Living room window: %d              ", openning[3]);
-    mvwprintw(dataWindow, 2, 0, "Bedroom 1 window: %d                ", openning[4]);
-    mvwprintw(dataWindow, 3, 0, "Bedroom 2 window: %d                ", openning[5]);
+    mvwprintw(dataWindow, 4, 0, "Kitchen door: %d                    ", openning[0]);
+    mvwprintw(dataWindow, 5, 0, "Kitchen window: %d                  ", openning[1]);
+    mvwprintw(dataWindow, 6, 0, "Living room door: %d                ", openning[2]);
+    mvwprintw(dataWindow, 7, 0, "Living room window: %d              ", openning[3]);
+    mvwprintw(dataWindow, 8, 0, "Bedroom 1 window: %d                ", openning[4]);
+    mvwprintw(dataWindow, 9, 0, "Bedroom 2 window: %d                ", openning[5]);
 
     wrefresh(dataWindow);
 }
