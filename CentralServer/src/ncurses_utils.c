@@ -154,16 +154,43 @@ int get_device_id(int device_type){
 }
 
 void update_values(double temperature, double humidity, int presence[], int openning[]){
-    mvwprintw(dataWindow, 0, 0, "Temperature: %.2lf                  ", temperature);
-    mvwprintw(dataWindow, 1, 0, "Humidity: %.2lf                     ", humidity);
-    mvwprintw(dataWindow, 2, 0, "Presence living room: %d            ", presence[0]);
-    mvwprintw(dataWindow, 3, 0, "Presence kitchen: %d                ", presence[1]);
-    mvwprintw(dataWindow, 4, 0, "Kitchen door: %d                    ", openning[0]);
-    mvwprintw(dataWindow, 5, 0, "Kitchen window: %d                  ", openning[1]);
-    mvwprintw(dataWindow, 6, 0, "Living room door: %d                ", openning[2]);
-    mvwprintw(dataWindow, 7, 0, "Living room window: %d              ", openning[3]);
-    mvwprintw(dataWindow, 8, 0, "Bedroom 1 window: %d                ", openning[4]);
-    mvwprintw(dataWindow, 9, 0, "Bedroom 2 window: %d                ", openning[5]);
+    if(temperature > 0.0 && temperature < 100.0)
+        mvwprintw(dataWindow, 0 , 0, "Temperature: -------- %.2lf         ", temperature);
+    if(humidity > 0.0 && humidity < 100.0) 
+        mvwprintw(dataWindow, 1 , 0, "Humidity: ----------- %.2lf         ", humidity);
+
+    if(presence[0] == ON)
+        mvwprintw(dataWindow, 3 , 0, "Presence living room: Detected      ", presence[0]);
+    else if(presence[0] == OFF)
+        mvwprintw(dataWindow, 3 , 0, "Presence living room: Nothing       ", presence[0]);
+    if(presence[1] == ON)
+        mvwprintw(dataWindow, 4 , 0, "Presence kitchen: --- Detected          ", presence[1]);
+    else if(presence[1] == OFF)
+        mvwprintw(dataWindow, 4 , 0, "Presence kitchen: --- Nothing           ", presence[1]);
+    if(openning[0] == ON)
+        mvwprintw(dataWindow, 6 , 0, "Kitchen door: ------- Detected              ", openning[0]);
+    else if(openning[0] == OFF)
+        mvwprintw(dataWindow, 6 , 0, "Kitchen door: ------- Nothing               ", openning[0]);
+    if(openning[1] == ON)
+        mvwprintw(dataWindow, 7 , 0, "Kitchen window: ----- Detected            ", openning[1]);
+    else if(openning[1] == OFF)
+        mvwprintw(dataWindow, 7 , 0, "Kitchen window: ----- Nothing             ", openning[1]);
+    if(openning[2] == ON)
+        mvwprintw(dataWindow, 8 , 0, "Living room door: --- Detected          ", openning[2]);
+    else if(openning[2] == OFF)
+        mvwprintw(dataWindow, 8 , 0, "Living room door: --- Nothing           ", openning[2]);
+    if(openning[3] == ON)
+        mvwprintw(dataWindow, 9 , 0, "Living room window: - Detected        ", openning[3]);
+    else if(openning[3] == OFF)
+        mvwprintw(dataWindow, 9 , 0, "Living room window: - Nothing         ", openning[3]);
+    if(openning[4] == ON)
+        mvwprintw(dataWindow, 10, 0, "Bedroom 1 window: --- Detected        ", openning[4]);
+    else if(openning[4] == OFF)
+        mvwprintw(dataWindow, 10, 0, "Bedroom 1 window: --- Nothing         ", openning[4]);
+    if(openning[5] == ON)
+        mvwprintw(dataWindow, 11, 0, "Bedroom 2 window: --- Detected        ", openning[5]);
+    else if(openning[5] == OFF)
+        mvwprintw(dataWindow, 11, 0, "Bedroom 2 window: --- Nothing         ", openning[5]);
 
     wrefresh(dataWindow);
 }
