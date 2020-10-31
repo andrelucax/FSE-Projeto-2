@@ -295,7 +295,7 @@ int get_device_id(int device_type){
     wrefresh(inputWindow);
     wscanw(inputWindow, "%d", &device_id);
 
-    no_echo();
+    noecho();
 
     return device_id;
 }
