@@ -55,27 +55,27 @@ int send_message_to_server(int device_type, int device_id, int on_off){
 							sizeof(server_addr)) < 0)
 		return 2;
 
-    int is_ok = 1;
+    int is_ok = 0;
     if(send(client_socket, (void *) &device_type, sizeof(int), 0) < 0)
-		is_ok = 0;
+		is_ok = 3;
 
     if(send(client_socket, (void *) &device_id, sizeof(int), 0) < 0)
-		is_ok = 0;
+		is_ok = 3;
 
     if(send(client_socket, (void *) &on_off, sizeof(int), 0) < 0)
-		is_ok = 0;
+		is_ok = 3;
 
 	int server_ans;
     if(recv(client_socket, (void *) &server_ans, sizeof(int), 0) < 0){
-        is_ok = 0;
+        is_ok = 4;
     }
 
-    if(!is_ok){
-        return 3;
+    if(is_ok){
+        return is_ok;
     }
 
 	if(server_ans){
-		return 4;
+		return 5;
 	}
 
 	close_socket();
