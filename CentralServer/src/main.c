@@ -18,7 +18,11 @@ int main(){
         return -2;
     }
     
-    init_tcp_client();
+    if(init_tcp_client()){
+        return -3;
+    }
+
+    pthread_join(thread_userinput, NULL);
 
     close_socket();
     finish_screens(1);

@@ -37,7 +37,7 @@ int init_tcp_server(){
 	// Listen
 	if(listen(server_socket, 10) < 0){
         return 3;
-    }		
+    }
 
     return 0;
 }

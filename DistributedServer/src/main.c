@@ -46,6 +46,7 @@ int main(){
         exit(-3);
     }
 
+    printf("Starting threads\n");
     if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL))
     {
         printf("Fail to create TCP server thread");

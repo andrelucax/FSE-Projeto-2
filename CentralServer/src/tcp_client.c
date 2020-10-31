@@ -19,7 +19,7 @@ int init_tcp_client() {
 
 	// Criar Socket
 	if((client_socket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
-		printf("Erro no socket()\n");
+		return 1;
 
 	// Construir struct sockaddr_in
 	memset(&server_addr, 0, sizeof(server_addr)); // Zerando a estrutura de dados
@@ -30,7 +30,7 @@ int init_tcp_client() {
 	// Connect
 	if(connect(client_socket, (struct sockaddr *) &server_addr, 
 							sizeof(server_addr)) < 0)
-		printf("Erro no connect()\n");
+		return 2;
 
 	// tamanhoMensagem = strlen(mensagem);
 
@@ -47,6 +47,8 @@ int init_tcp_client() {
 	// }
 	// close(client_socket);
 	// exit(0);
+
+	return 0;
 }
 
 int send_message_to_server(int device_type, int device_id, int on_off){
