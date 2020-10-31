@@ -56,9 +56,8 @@ int wait_for_client(){
 void *handle_tcp_client() {
 	while(1){
 		if(wait_for_client()){
-			return (void *) 0;
+			continue;
 		}
-		printf("Got client");
 		int is_ok = 1;
 
 		int recv_size;
@@ -72,8 +71,6 @@ void *handle_tcp_client() {
 		if((recv_size = recv(client_socket, (void *) &on_off, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
-
-		printf("Command received %d %d %d\n", device_type, device_id, on_off);
 
 		int msg = 0;
 		if(is_ok){
