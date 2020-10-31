@@ -18,7 +18,7 @@ int main(){
         return -2;
     }
     
-    pthread_join(thread_userinput, NULL);
+    init_tcp_client();
 
     close_socket();
     finish_screens(1);

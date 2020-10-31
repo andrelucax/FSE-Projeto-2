@@ -60,13 +60,18 @@ int send_message_to_server(int device_type, int device_id, int on_off){
     if(send(client_socket, (void *) &on_off, sizeof(int), 0) < 0)
 		is_ok = 0;
 
-    if(recv(client_socket, (void *) &on_off, sizeof(int), 0) < 0){
+	int server_ans;
+    if(recv(client_socket, (void *) &server_ans, sizeof(int), 0) < 0){
         is_ok = 0;
     }
 
     if(!is_ok){
         return 1;
     }
+
+	if(server_ans){
+		return 2;
+	}
 
     return 0;
 }
