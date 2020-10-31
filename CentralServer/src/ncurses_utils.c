@@ -54,7 +54,7 @@ int init_screens()
     cbreak();             // Disable line buffering, gimme every thing
     keypad(stdscr, TRUE); // Gimme that spicy F button
     curs_set(0);          // Hide cursor
-    // refresh();
+    refresh();
 
     int row, col;
     getmaxyx(stdscr, row, col);
@@ -107,6 +107,8 @@ int init_screens()
 
     alarmWindow = create_newwin(LINES - 28, COLS / 2, 28, COLS / 2, 0);
     alarmBoxWindow = create_newwin(LINES - 28, COLS / 2, 28, COLS / 2, 1);
+
+    print_menu();
 
     return 0;
 }
@@ -233,17 +235,20 @@ void messageGoodBye()
 //     wrefresh(inputWindow);
 // }
 
-// void print_menu()
-// {
-//     wclear(menuWindow);
+void print_menu()
+{
+    wclear(menuWindow);
 
-//     mvwprintw(menuWindow, 0, 0, "Option F1: exit program");
-//     mvwprintw(menuWindow, 2, 0, "Option F2: get reference temperature from potenciometer");
-//     mvwprintw(menuWindow, 3, 0, "Option F3: get reference temperature from keyboard input");
-//     mvwprintw(menuWindow, 4, 0, "Option F4: set histerese");
+    mvwprintw(menuWindow, 0, 0, "Option F1: exit program");
+    mvwprintw(menuWindow, 2, 0, "Option F2: turn lamp on");
+    mvwprintw(menuWindow, 3, 0, "Option F3: turn lamp off");
+    mvwprintw(menuWindow, 4, 0, "Option F4: turn air on");
+    mvwprintw(menuWindow, 5, 0, "Option F5: turn air off");
+    mvwprintw(menuWindow, 6, 0, "Option F6: activate alarm");
+    mvwprintw(menuWindow, 7, 0, "Option F7: deactivate alarm");
 
-//     wrefresh(menuWindow);
-// }
+    wrefresh(menuWindow);
+}
 
 // void print_messages(char message1[], char message2[], char message3[])
 // {
