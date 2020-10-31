@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 #include "tcp_server.h"
-#include "gpio_utils.h"
 #include "ncurses_utils.h"
 
 int client_socket;
@@ -59,26 +58,26 @@ void *handle_tcp_client() {
 		if(wait_for_client()){
 			continue;
 		}
-		int is_ok = 1;
+		// int is_ok = 1;
 		int recv_size;
 		double humidity, temperature;
 		int presence[2], openning[6];
 		if((recv_size = recv(client_socket, (void *) &humidity, sizeof(double), 0)) < 0){
-			is_ok = 0;
-		}
-		if((recv_size = recv(client_socket, (void *) &temperature, sizeof(double), 0)) < 0){
-			is_ok = 0;
+			// is_ok = 0;
+			if((recv_size = recv(client_socket, (void *) &temperature, sizeof(double), 0)) < 0){
+				// is_ok = 0;
+				update_t_h(temperature, humidity);
+			}
 		}
 		if((recv_size = recv(client_socket, (void *) presence, sizeof(int)*2, 0)) < 0){
-			is_ok = 0;
+			// is_ok = 0;
+			update_presence(presence);
 		}
 		if((recv_size = recv(client_socket, (void *) openning, sizeof(int)*6, 0)) < 0){
-			is_ok = 0;
+			// is_ok = 0;
+			update_openning(openning);
 		}
 
-		update_t_h(temperature, humidity);
-		update_presence(presence);
-		update_openning(openning);
 
 		close(client_socket);
 	}

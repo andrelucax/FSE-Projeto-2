@@ -300,7 +300,7 @@ int get_device_id(int device_type){
     return device_id;
 }
 
-update_t_h(double temperature, double humidity){
+void update_t_h(double temperature, double humidity){
     wclear(sensorhtWindow);
 
     if(temperature > 0){
@@ -313,7 +313,7 @@ update_t_h(double temperature, double humidity){
     wrefresh(sensorhtWindow);
 }
 
-update_presence(int presence[]){
+void update_presence(int presence[]){
     wclear(presenceSensor1Window);
     wclear(presenceSensor2Window);
 
@@ -335,7 +335,7 @@ update_presence(int presence[]){
     wrefresh(presenceSensor2Window);
 }
 
-update_openning(int openning[]){
+void update_openning(int openning[]){
     wclear(openning1Window);
     wclear(openning2Window);
     wclear(openning3Window);
