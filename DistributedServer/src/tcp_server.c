@@ -54,11 +54,11 @@ int wait_for_client(){
 }
 
 void *handle_tcp_client() {
-	if(wait_for_client()){
-		return (void *) 0;
-	}
-	printf("Got client");
 	while(1){
+		if(wait_for_client()){
+			return (void *) 0;
+		}
+		printf("Got client");
 		int is_ok = 1;
 
 		int recv_size;
@@ -92,6 +92,7 @@ void *handle_tcp_client() {
 			msg = 2;
 			send(client_socket, (void *) msg, sizeof(int), 0);
 		}
+		close(client_socket);
 	}
 }
 

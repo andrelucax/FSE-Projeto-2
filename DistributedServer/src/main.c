@@ -26,7 +26,7 @@ int main(){
     signal(SIGTERM, sig_handler);
     signal(SIGABRT, sig_handler);
     signal(SIGQUIT, sig_handler);
-    ualarm(1000000, 1000000);
+    // ualarm(1000000, 1000000);
 
     printf("Starting BCM...\n");
     if(init_bcm()){
