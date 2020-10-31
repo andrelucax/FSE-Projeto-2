@@ -54,7 +54,6 @@ int wait_for_client(){
 }
 
 void *handle_tcp_client() {
-	endwin();
 	while(1){
 		if(wait_for_client()){
 			continue;
