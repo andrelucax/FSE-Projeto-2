@@ -47,9 +47,19 @@ void *watch_userinput(){
         }
         else if (menuOption == KEY_F(4)){
             // Turn air on
+            int air_id = get_device_id(AIR);
+            int server_return = send_message_to_server(AIR, air_id, ON);
+            if(server_return){
+                print_error();
+            }
         }
         else if (menuOption == KEY_F(5)){
             // Turn air off
+            int air_id = get_device_id(AIR);
+            int server_return = send_message_to_server(AIR, air_id, OFF);
+            if(server_return){
+                print_error();
+            }
         }
         else if (menuOption == KEY_F(6)){
             // Activate alarm
