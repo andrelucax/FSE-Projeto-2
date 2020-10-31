@@ -1,4 +1,4 @@
 CentralServer/bin/*
 CentralServer/obj/*
-Client/bin/*
-Client/obj/*
+DistributedServer/bin/*
+DistributedServer/obj/*

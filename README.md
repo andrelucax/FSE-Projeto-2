@@ -2,6 +2,10 @@
 =========================
 Andre Lucas de Sousa Pinto - 17/0068251
 
-## Como rodar a solução em um ambiente Linux
+#
 
-Instrucoes para rodar o server e o cliente no README da pasta de ambos
+Nota: o servidor central deve ser rodado primeiro
+
+#
+
+Instrucoes para rodar ambos no README da pasta de ambos

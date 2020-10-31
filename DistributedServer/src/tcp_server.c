@@ -56,29 +56,32 @@ void *handle_tcp_client() {
 
 		int recv_size;
 		int on_off, device_type, device_id;
-		if((recv_size = recv(client_socket, on_off, sizeof(int), 0)) < 0){
+		if((recv_size = recv(client_socket, (void *) &on_off, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
-		if((recv_size = recv(client_socket, device_type, sizeof(int), 0)) < 0){
+		if((recv_size = recv(client_socket, (void *) &device_type, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
-		if((recv_size = recv(client_socket, device_id, sizeof(int), 0)) < 0){
+		if((recv_size = recv(client_socket, (void *) &device_id, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
 
+		int msg = 0;
 		if(is_ok){
 			if(outp_device_on_off(device_type, device_id, on_off)){
 				// Send FAIL 1 to client
-				send(client_socket, 1, sizeof(int), 0);
+				msg = 1;
+				send(client_socket, (void *) msg, sizeof(int), 0);
 			}
 			else{
 				// Send OK 0 to client
-				send(client_socket, 0, sizeof(int), 0);
+				send(client_socket, (void *) msg, sizeof(int), 0);
 			}
 		}
 		else{
 			// Send FAIL 2 to client
-			send(client_socket, 2, sizeof(int), 0);
+			msg = 2;
+			send(client_socket, (void *) msg, sizeof(int), 0);
 		}
 
 		close(client_socket);
