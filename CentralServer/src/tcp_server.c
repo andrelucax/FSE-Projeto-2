@@ -82,6 +82,9 @@ void *handle_tcp_client() {
 			update_openning(openning);
 		}
 
+		printf("%lf\n", humidity);
+		printf("%lf\n", temperature);
+
 		close(client_socket);
 	}
 }
