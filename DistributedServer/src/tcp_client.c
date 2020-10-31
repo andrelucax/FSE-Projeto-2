@@ -52,34 +52,26 @@ int send_message_to_server(double *humidity, double *temperature, int presence[]
     }
 	// Connect
 	if(connect(client_socket, (struct sockaddr *) &server_addr, 
-							sizeof(server_addr)) < 0)
+							sizeof(server_addr)) < 0){
 		return 2;
+	}
 
     int is_ok = 0;
     if(send(client_socket, (void *) humidity, sizeof(double), 0) < 0)
-		is_ok = 3;
+		is_ok = -1;
 
     if(send(client_socket, (void *) temperature, sizeof(double), 0) < 0)
-		is_ok = 3;
+		is_ok = -2;
 
     if(send(client_socket, (void *) presence, sizeof(int)*2, 0) < 0)
-		is_ok = 3;
+		is_ok = -3;
 	
 	if(send(client_socket, (void *) openning, sizeof(int)*6, 0) < 0)
-		is_ok = 3;
-
-	int server_ans;
-    if(recv(client_socket, (void *) &server_ans, sizeof(int), 0) < 0){
-        is_ok = 4;
-    }
+		is_ok = -4;
 
     if(is_ok){
         return is_ok;
     }
-
-	if(server_ans){
-		return 5;
-	}
 
 	close_socket();
 
