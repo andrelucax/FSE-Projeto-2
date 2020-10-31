@@ -47,10 +47,13 @@ int init_tcp_client() {
 }
 
 int send_message_to_server(int device_type, int device_id, int on_off){
+	if(init_tcp_client()){
+        return 1;
+    }
 	// Connect
 	if(connect(client_socket, (struct sockaddr *) &server_addr, 
 							sizeof(server_addr)) < 0)
-		return 1;
+		return 2;
 
     int is_ok = 1;
     if(send(client_socket, (void *) &device_type, sizeof(int), 0) < 0)
@@ -68,14 +71,14 @@ int send_message_to_server(int device_type, int device_id, int on_off){
     }
 
     if(!is_ok){
-        return 2;
+        return 3;
     }
 
 	if(server_ans){
-		return 3;
+		return 4;
 	}
 
-	close(client_socket);
+	close_socket();
 
     return 0;
 }

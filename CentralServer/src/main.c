@@ -17,10 +17,6 @@ int main(){
     if (pthread_create(&thread_userinput, NULL, watch_userinput, NULL)){
         return -2;
     }
-    
-    if(init_tcp_client()){
-        return -3;
-    }
 
     pthread_join(thread_userinput, NULL);
 
