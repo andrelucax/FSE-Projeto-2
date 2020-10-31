@@ -2,6 +2,8 @@
 #include <string.h>
 #include <float.h>
 
+#include "gpio_defines.h"
+
 WINDOW *menuWindow;
 WINDOW *menuBoxWindow;
 
@@ -248,6 +250,34 @@ void print_menu()
     mvwprintw(menuWindow, 7, 0, "Option F7: deactivate alarm");
 
     wrefresh(menuWindow);
+}
+
+void print_error(){
+    wclear(inputWindow);
+
+    mvwprintw(inputWindow, 0, 0, "Error on command");
+
+    wrefresh(inputWindow);
+}
+
+int get_device_id(int device_type){
+    wclear(inputWindow);
+
+    int device_id = 0;
+    if(device_type == LAMP){
+        mvwprintw(inputWindow, 0, 0, "Enter lamp id > ");
+    }
+    else if(device_type == AIR){
+        mvwprintw(inputWindow, 0, 0, "Enter air id > ");
+    }
+    else{
+        return 0;
+    }
+
+    wrefresh(inputWindow);
+    wscanw(inputWindow, "%d", &device_id);
+
+    return device_id;
 }
 
 // void print_messages(char message1[], char message2[], char message3[])

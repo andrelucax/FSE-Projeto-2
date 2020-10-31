@@ -31,11 +31,19 @@ void *watch_userinput(){
     while ((menuOption = getch()) != KEY_F(1)){
         if (menuOption == KEY_F(2)){
             // Turn lamp on
-            send_message_to_server(LAMP, 1, ON);
+            int lamp_id = get_device_id(LAMP);
+            int server_return = send_message_to_server(LAMP, lamp_id, ON);
+            if(server_return){
+                print_error();
+            }
         }
         else if (menuOption == KEY_F(3)){
             // Turn lamp off
-            send_message_to_server(LAMP, 1, OFF);
+            int lamp_id = get_device_id(LAMP);
+            int server_return = send_message_to_server(LAMP, lamp_id, OFF);
+            if(server_return){
+                print_error();
+            }
         }
         else if (menuOption == KEY_F(4)){
             // Turn air on
