@@ -4,23 +4,35 @@
 #include "ncurses_utils.h"
 #include "tcp_client.h"
 #include "gpio_defines.h"
+#include "tcp_server.h"
 
 void *watch_userinput();
 
 pthread_t thread_userinput;
+pthread_t thread_tcp_server;
 
 int main(){
     if(init_screens()){
-        return -1;
+        exit(-1);
     }
 
     if (pthread_create(&thread_userinput, NULL, watch_userinput, NULL)){
-        return -2;
+        exit(-2);
+    }
+
+    if (init_tcp_server()){
+        exit(-3);
+    }
+
+    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL))
+    {
+        exit(-4);
     }
 
     pthread_join(thread_userinput, NULL);
 
     close_socket();
+    close_sockets();
     finish_screens(1);
 
     return 0;

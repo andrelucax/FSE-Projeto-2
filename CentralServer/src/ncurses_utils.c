@@ -299,3 +299,96 @@ int get_device_id(int device_type){
 
     return device_id;
 }
+
+update_t_h(double temperature, double humidity){
+    wclear(sensorhtWindow);
+
+    if(temperature > 0){
+        mvwprintw(sensorhtWindow, 0, 0, "%d", temperature);
+    }
+    if(humidity > 0){
+        mvwprintw(sensorhtWindow, 1, 0, "%d", humidity);
+    }
+
+    wrefresh(sensorhtWindow);
+}
+
+update_presence(int presence[]){
+    wclear(presenceSensor1Window);
+    wclear(presenceSensor2Window);
+
+    if(presence[0] == ON){
+        mvwprintw(presenceSensor1Window, 0, 0, "Living room: detected");
+    }
+    else{
+        mvwprintw(presenceSensor1Window, 0, 0, "Living room: nothing");
+    }
+
+    if(presence[1] == ON){
+        mvwprintw(presenceSensor2Window, 0, 0, "Kitchen: detected");
+    }
+    else{
+        mvwprintw(presenceSensor2Window, 0, 0, "Kitchen: nothing");
+    }
+
+    wrefresh(presenceSensor1Window);
+    wrefresh(presenceSensor2Window);
+}
+
+update_openning(int openning[]){
+    wclear(openning1Window);
+    wclear(openning2Window);
+    wclear(openning3Window);
+    wclear(openning4Window);
+    wclear(openning5Window);
+    wclear(openning6Window);
+
+    if(openning[0] == ON){
+        mvwprintw(openning1Window, 0, 0, "Kitchen door: detected");
+    }
+    else{
+        mvwprintw(openning1Window, 0, 0, "Kitchen door: nothing");
+    }
+
+    if(openning[1] == ON){
+        mvwprintw(openning2Window, 0, 0, "Kitchen window: detected");
+    }
+    else{
+        mvwprintw(openning2Window, 0, 0, "Kitchen window: nothing");
+    }
+
+    if(openning[2] == ON){
+        mvwprintw(openning3Window, 0, 0, "Living room door: detected");
+    }
+    else{
+        mvwprintw(openning3Window, 0, 0, "Living room door: nothing");
+    }
+
+    if(openning[3] == ON){
+        mvwprintw(openning4Window, 0, 0, "Living room window: detected");
+    }
+    else{
+        mvwprintw(openning4Window, 0, 0, "Living room window: nothing");
+    }
+
+    if(openning[4] == ON){
+        mvwprintw(openning5Window, 0, 0, "Room 1 window: detected");
+    }
+    else{
+        mvwprintw(openning5Window, 0, 0, "Room 1 window: nothing");
+    }
+
+    if(openning[5] == ON){
+        mvwprintw(openning6Window, 0, 0, "Room 2 window: detected");
+    }
+    else{
+        mvwprintw(openning6Window, 0, 0, "Room 2 window: nothing");
+    }
+
+    wrefresh(openning1Window);
+    wrefresh(openning2Window);
+    wrefresh(openning3Window);
+    wrefresh(openning4Window);
+    wrefresh(openning5Window);
+    wrefresh(openning6Window);
+}
