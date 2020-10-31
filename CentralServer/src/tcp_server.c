@@ -16,7 +16,7 @@ struct sockaddr_in client_addr;
 int init_tcp_server(){
 	unsigned short server_port;
 
-	server_port = SERVER_PORT;
+	server_port = MY_SERVER_PORT;
 
 	// Abrir Socket
 	if((server_socket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){

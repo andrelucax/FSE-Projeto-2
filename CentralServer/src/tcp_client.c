@@ -15,7 +15,7 @@ int init_tcp_client() {
 	char *server_IP;
 
 	server_IP = SERVER_IP;
-	server_port = SERVER_PORT;
+	server_port = OTHER_SERVER_PORT;
 
 	// Criar Socket
 	if((client_socket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
