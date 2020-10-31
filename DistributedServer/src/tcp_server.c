@@ -42,27 +42,33 @@ int init_tcp_server(){
     return 0;
 }
 
-void *handle_tcp_client() {
-	while(1){
-		unsigned int client_len = sizeof(client_addr);
-		if((client_socket = accept(server_socket, 
-									(struct sockaddr *) &client_addr, 
-									&client_len)) < 0){
-			printf("Error on accept\n");
-			return (void *) 0;
-		}
+int wait_for_client(){
+	unsigned int client_len = sizeof(client_addr);
+	if((client_socket = accept(server_socket, 
+								(struct sockaddr *) &client_addr, 
+								&client_len)) < 0){
+		printf("Error on accept\n");
+		return 1;
+	}
+	return 0;
+}
 
+void *handle_tcp_client() {
+	if(wait_for_client()){
+		return (void *) 0;
+	}
+	while(1){
 		int is_ok = 1;
 
 		int recv_size;
 		int on_off, device_type, device_id;
-		if((recv_size = recv(client_socket, (void *) &on_off, sizeof(int), 0)) < 0){
-			is_ok = 0;
-		}
 		if((recv_size = recv(client_socket, (void *) &device_type, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
 		if((recv_size = recv(client_socket, (void *) &device_id, sizeof(int), 0)) < 0){
+			is_ok = 0;
+		}
+		if((recv_size = recv(client_socket, (void *) &on_off, sizeof(int), 0)) < 0){
 			is_ok = 0;
 		}
 
@@ -83,8 +89,6 @@ void *handle_tcp_client() {
 			msg = 2;
 			send(client_socket, (void *) msg, sizeof(int), 0);
 		}
-
-		close(client_socket);
 	}
 }
 
