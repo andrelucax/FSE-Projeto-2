@@ -53,6 +53,11 @@ void *watch_userinput(){
             }
             int server_return = send_message_to_server(LAMP, lamp_id, ON);
             if(server_return){
+                if(server_return == 0) show_debug_msg("0");
+                if(server_return == 1) show_debug_msg("1");
+                if(server_return == 2) show_debug_msg("2");
+                if(server_return == 3) show_debug_msg("3");
+                if(server_return == 4) show_debug_msg("4");
                 print_error();
             }
         }
@@ -77,10 +82,7 @@ void *watch_userinput(){
             }
             int server_return = send_message_to_server(AIR, air_id, ON);
             if(server_return){
-                endwin();
-                printf("%d\n", server_return);
                 print_error();
-                exit(0);
             }
         }
         else if (menuOption == KEY_F(5)){

@@ -12,5 +12,6 @@ void print_error();
 int get_device_id(int device_type);
 void print_waiting_for_client();
 void update_values(double temperature, double humidity, int presence[], int openning[]);
+void show_debug_msg(char msg[]);
 
 #endif /* _NCURSES_UTILS_H_ */
