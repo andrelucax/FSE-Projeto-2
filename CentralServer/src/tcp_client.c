@@ -70,6 +70,8 @@ int send_message_to_server(int device_type, int device_id, int on_off){
         is_ok = 4;
     }
 
+	close_socket();
+
     if(is_ok){
         return is_ok;
     }
@@ -77,8 +79,6 @@ int send_message_to_server(int device_type, int device_id, int on_off){
 	if(server_ans){
 		return 5;
 	}
-
-	close_socket();
 
     return 0;
 }
