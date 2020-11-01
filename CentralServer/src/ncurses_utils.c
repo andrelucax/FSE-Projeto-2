@@ -170,11 +170,11 @@ void update_values(double temperature, double humidity, int presence[], int open
         mvwprintw(dataWindow, 4 , 0, "Living room lamp (id 2): ON            ");
     else
         mvwprintw(dataWindow, 4 , 0, "Living room lamp (id 2): OFF           ");
-    if(lamp[1] == ON)
+    if(lamp[2] == ON)
         mvwprintw(dataWindow, 5 , 0, "Bedroom 1 lamp (id 3): - ON            ");
     else
         mvwprintw(dataWindow, 5 , 0, "Bedroom 1 lamp (id 3): - OFF           ");
-    if(lamp[1] == ON)
+    if(lamp[3] == ON)
         mvwprintw(dataWindow, 6 , 0, "Bedroom 2 lamp (id 4): - ON            ");
     else
         mvwprintw(dataWindow, 6 , 0, "Bedroom 2 lamp (id 4): - OFF           ");
