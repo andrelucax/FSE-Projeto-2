@@ -49,6 +49,7 @@ void *watch_userinput(){
             int lamp_id = get_device_id(LAMP);
             if(lamp_id < 1 || lamp_id > 4){
                 print_error();
+                show_debug_msg("wtf?");
                 continue;
             }
             int server_return = send_message_to_server(LAMP, lamp_id, ON);

@@ -196,5 +196,6 @@ void update_values(double temperature, double humidity, int presence[], int open
 }
 
 void show_debug_msg(char msg[]){
-    mvwprintw(dataWindow, LINES - 1, 0, msg);
+    mvwprintw(dataWindow, LINES - 2, 0, msg);
+    wrefresh(dataWindow);
 }
