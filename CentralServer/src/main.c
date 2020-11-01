@@ -6,6 +6,7 @@
 #include "tcp_client.h"
 #include "gpio_defines.h"
 #include "tcp_server.h"
+#include "log.h"
 
 void *watch_userinput();
 
@@ -48,55 +49,79 @@ void *watch_userinput(){
             // Turn lamp on
             int lamp_id = get_device_id(LAMP);
             if(lamp_id < 1 || lamp_id > 4){
+                save_in_log("Turn lamp on", "Failed (invalid ID)");
                 print_error();
                 continue;
             }
             int server_return = send_message_to_server(LAMP, lamp_id, ON);
             if(server_return){
+                save_in_log("Turn lamp on", "Failed (server)");
                 print_error();
+            }
+            else{
+                save_in_log("Turn lamp on", "Ok");
             }
         }
         else if (menuOption == KEY_F(3)){
             // Turn lamp off
             int lamp_id = get_device_id(LAMP);
             if(lamp_id < 1 || lamp_id > 4){
+                save_in_log("Turn lamp off", "Failed (invalid ID)");
                 print_error();
                 continue;
             }
             int server_return = send_message_to_server(LAMP, lamp_id, OFF);
             if(server_return){
+                save_in_log("Turn lamp off", "Failed (server)");
                 print_error();
+            }
+            else{
+                save_in_log("Turn lamp off", "Ok");
             }
         }
         else if (menuOption == KEY_F(4)){
             // Turn air on
             int air_id = get_device_id(AIR);
             if(air_id < 1 || air_id > 2){
+                save_in_log("Turn air on", "Failed (invalid ID)");
                 print_error();
                 continue;
             }
             int server_return = send_message_to_server(AIR, air_id, ON);
             if(server_return){
+                save_in_log("Turn air on", "Failed (server)");
                 print_error();
+            }
+            else{
+                save_in_log("Turn air on", "Ok");
             }
         }
         else if (menuOption == KEY_F(5)){
             // Turn air off
             int air_id = get_device_id(AIR);
             if(air_id < 1 || air_id > 2){
+                save_in_log("Turn air off", "Failed (invalid ID)");
                 print_error();
                 continue;
             }
             int server_return = send_message_to_server(AIR, air_id, OFF);
             if(server_return){
+                save_in_log("Turn air off", "Failed (server)");
                 print_error();
+            }
+            else{
+                save_in_log("Turn air off", "Ok");
             }
         }
         else if (menuOption == KEY_F(6)){
             // Activate alarm
+            // Clear input
+            save_in_log("Turn alarm on", "Ok");
         }
         else if (menuOption == KEY_F(7)){
             // Deactivate alarm
+            // Clear input
+            save_in_log("Turn alarm off", "Ok");
         }
     }
 

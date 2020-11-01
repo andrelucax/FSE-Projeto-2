@@ -2,3 +2,4 @@ CentralServer/bin/*
 CentralServer/obj/*
 DistributedServer/bin/*
 DistributedServer/obj/*
+dados.csv
