@@ -77,7 +77,10 @@ void *watch_userinput(){
             }
             int server_return = send_message_to_server(AIR, air_id, ON);
             if(server_return){
+                endwin();
+                printf("%d\n", server_return);
                 print_error();
+                exit(0);
             }
         }
         else if (menuOption == KEY_F(5)){
