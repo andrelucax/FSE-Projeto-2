@@ -47,7 +47,7 @@ void *watch_userinput(){
         if (menuOption == KEY_F(2)){
             // Turn lamp on
             int lamp_id = get_device_id(LAMP);
-            if(lamp_id < 1 || lamp_id > 2){
+            if(lamp_id < 1 || lamp_id > 4){
                 print_error();
                 continue;
             }
@@ -59,7 +59,7 @@ void *watch_userinput(){
         else if (menuOption == KEY_F(3)){
             // Turn lamp off
             int lamp_id = get_device_id(LAMP);
-            if(lamp_id < 1 || lamp_id > 2){
+            if(lamp_id < 1 || lamp_id > 4){
                 print_error();
                 continue;
             }
@@ -71,7 +71,7 @@ void *watch_userinput(){
         else if (menuOption == KEY_F(4)){
             // Turn air on
             int air_id = get_device_id(AIR);
-            if(air_id < 1 || air_id > 6){
+            if(air_id < 1 || air_id > 2){
                 print_error();
                 continue;
             }
@@ -83,7 +83,7 @@ void *watch_userinput(){
         else if (menuOption == KEY_F(5)){
             // Turn air off
             int air_id = get_device_id(AIR);
-            if(air_id < 1 || air_id > 6){
+            if(air_id < 1 || air_id > 2){
                 print_error();
                 continue;
             }

@@ -4,8 +4,4 @@ Andre Lucas de Sousa Pinto - 17/0068251
 
 #
 
-Nota: o servidor central deve ser rodado primeiro
-
-#
-
-Instrucoes para rodar ambos no README da pasta de ambos
+Instrucoes para rodar o servidor central e o servidor distribuido no README dentro de suas respectivas pastas
