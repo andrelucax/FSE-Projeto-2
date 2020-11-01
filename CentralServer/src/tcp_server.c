@@ -61,7 +61,7 @@ void *handle_tcp_client() {
 		// int is_ok = 1;
 		int recv_size;
 		double humidity, temperature;
-		int presence[2], openning[6];
+		int presence[2], openning[6], air[2], lamp[4];
 		if((recv_size = recv(client_socket, (void *) &humidity, sizeof(double), 0)) < 0 ||
 		   (recv_size = recv(client_socket, (void *) &temperature, sizeof(double), 0)) < 0){
 			// is_ok = 0;
@@ -72,8 +72,14 @@ void *handle_tcp_client() {
 		if((recv_size = recv(client_socket, (void *) openning, sizeof(int)*6, 0)) < 0){
 			// is_ok = 0;
 		}
+		if((recv_size = recv(client_socket, (void *) air, sizeof(int)*2, 0)) < 0){
+			// is_ok = 0;
+		}
+		if((recv_size = recv(client_socket, (void *) lamp, sizeof(int)*4, 0)) < 0){
+			// is_ok = 0;
+		}
 
-		update_values(temperature, humidity, presence, openning);
+		update_values(temperature, humidity, presence, openning, air, lamp);
 
 		close(client_socket);
 	}

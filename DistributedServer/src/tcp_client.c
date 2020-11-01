@@ -46,7 +46,7 @@ int init_tcp_client() {
 	return 0;
 }
 
-int send_message_to_server(double *humidity, double *temperature, int presence[], int openning[]){
+int send_message_to_server(double *humidity, double *temperature, int presence[], int openning[], int air[], int lamp[]){
 	if(init_tcp_client()){
         return 1;
     }
@@ -68,6 +68,12 @@ int send_message_to_server(double *humidity, double *temperature, int presence[]
 	
 	if(send(client_socket, (void *) openning, sizeof(int)*6, 0) < 0)
 		is_ok = -4;
+
+	if(send(client_socket, (void *) air, sizeof(int)*2, 0) < 0)
+		is_ok = -5;
+
+	if(send(client_socket, (void *) lamp, sizeof(int)*4, 0) < 0)
+		is_ok = -6;
 
     if(is_ok){
         return is_ok;

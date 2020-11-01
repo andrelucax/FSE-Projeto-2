@@ -71,11 +71,11 @@ void *handle_send_data(){
     while(1){
         sem_wait(&sem_send_data);
         double humidity = 0, temperature = 0;
-        int presence[2], openning[6];
+        int presence[2], openning[6], air[2], lamp[4];
         printf("Updating values...\n");
-        update_values(&humidity, &temperature, presence, openning);
+        update_values(&humidity, &temperature, presence, openning, air, lamp);
         printf("Sending data...\n");
-        if (send_data(&humidity, &temperature, presence, openning)){
+        if (send_data(&humidity, &temperature, presence, openning, air, lamp)){
             printf("Failed to send data\n");
         }
     }

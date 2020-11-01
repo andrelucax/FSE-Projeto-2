@@ -29,5 +29,6 @@
 int init_bcm();
 int outp_device_on_off(int device_type, int device_id, int on_off);
 void get_inpt_device_on_off(int presence[], int openning[]);
+void get_outp_device_on_off(int lamp[], int air[]);
 
 #endif /* _GPIO_UTILS_H_ */
