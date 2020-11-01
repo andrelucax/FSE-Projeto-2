@@ -83,7 +83,7 @@ void get_outp_device_on_off(int lamp[], int air[]){
     air[1] = bcm2835_gpio_lev(AIR2);
 
     lamp[0] = bcm2835_gpio_lev(LAMP1);
-    lamp[1] = bcm2835_gpio_lev(LAMP1);
+    lamp[1] = bcm2835_gpio_lev(LAMP2);
     lamp[2] = bcm2835_gpio_lev(LAMP3);
     lamp[3] = bcm2835_gpio_lev(LAMP4);
 }
