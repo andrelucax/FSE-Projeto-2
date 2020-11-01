@@ -115,12 +115,12 @@ void *watch_userinput(){
         }
         else if (menuOption == KEY_F(6)){
             // Activate alarm
-            // Clear input
+            clear_input();
             save_in_log("Turn alarm on", "Ok");
         }
         else if (menuOption == KEY_F(7)){
             // Deactivate alarm
-            // Clear input
+            clear_input();
             save_in_log("Turn alarm off", "Ok");
         }
     }

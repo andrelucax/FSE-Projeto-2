@@ -104,13 +104,17 @@ void print_menu()
 {
     wclear(menuWindow);
 
-    mvwprintw(menuWindow, 0, 0, "Option F1: exit program");
-    mvwprintw(menuWindow, 2, 0, "Option F2: turn lamp on");
-    mvwprintw(menuWindow, 3, 0, "Option F3: turn lamp off");
-    mvwprintw(menuWindow, 4, 0, "Option F4: turn air on");
-    mvwprintw(menuWindow, 5, 0, "Option F5: turn air off");
-    mvwprintw(menuWindow, 6, 0, "Option F6: activate alarm");
-    mvwprintw(menuWindow, 7, 0, "Option F7: deactivate alarm");
+    mvwprintw(menuWindow, 0 , 0, "Option F1: exit program");
+
+
+    mvwprintw(menuWindow, 3 , 0, "Option F2: turn lamp on");
+    mvwprintw(menuWindow, 4 , 0, "Option F3: turn lamp off");
+
+    mvwprintw(menuWindow, 6 , 0, "Option F4: turn air on");
+    mvwprintw(menuWindow, 7 , 0, "Option F5: turn air off");
+
+    mvwprintw(menuWindow, 9 , 0, "Option F6: activate alarm");
+    mvwprintw(menuWindow, 10, 0, "Option F7: deactivate alarm");
 
     wrefresh(menuWindow);
 }
@@ -130,9 +134,9 @@ void print_error(){
 }
 
 int get_device_id(int device_type){
-    echo();
-
     wclear(inputWindow);
+
+    echo();
 
     int device_id = 0;
     if(device_type == LAMP){
@@ -223,4 +227,9 @@ void update_values(double temperature, double humidity, int presence[], int open
         mvwprintw(dataWindow, 19, 0, "Bedroom 2 window: ------ Nothing       ");
 
     wrefresh(dataWindow);
+}
+
+void clear_input(){
+    wclear(inputWindow);
+    wrefresh(inputWindow);
 }
