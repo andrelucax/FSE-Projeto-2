@@ -12,7 +12,7 @@ void update_values(double *humidity, double *temperature, int presence[], int op
 }
 
 int send_data(double *humidity, double *temperature, int presence[], int openning[], int air[], int lamp[]){
-    if (send_message_to_server(humidity, temperature, presence, openning)){
+    if (send_message_to_server(humidity, temperature, presence, openning, air, lamp)){
         return 1;
     }
     return 0;

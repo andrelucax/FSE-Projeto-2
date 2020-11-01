@@ -5,7 +5,7 @@
 #define OTHER_SERVER_PORT 10029
 
 int init_tcp_client();
-int send_message_to_server(double *humidity, double *temperature, int presence[], int openning[]);
+int send_message_to_server(double *humidity, double *temperature, int presence[], int openning[], int air[], int lamp[]);
 void close_socket();
 
 #endif // _TCP_CLIENT_H_
