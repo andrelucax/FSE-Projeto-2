@@ -149,6 +149,7 @@ int get_device_id(int device_type){
     wscanw(inputWindow, "%d", &device_id);
 
     wclear(inputWindow);
+    wrefresh(inputWindow);
 
     noecho();
 
