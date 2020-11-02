@@ -117,13 +117,11 @@ void *watch_userinput(){
         }
         else if (menuOption == KEY_F(6)){
             alarm = 1;
-            print_alarm_status("# Alarm status: Activated              ");
             clear_input();
             save_in_log("Turn alarm on", "Ok");
         }
         else if (menuOption == KEY_F(7)){
             alarm = 0;
-            print_alarm_status("# Alarm status: Deactivated            ");
             clear_input();
             save_in_log("Turn alarm off", "Ok");
         }
