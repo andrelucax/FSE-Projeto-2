@@ -7,6 +7,7 @@
 
 #include "tcp_server.h"
 #include "ncurses_utils.h"
+#include "alarm.h"
 
 int client_socket;
 int server_socket;
