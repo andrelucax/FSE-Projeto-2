@@ -233,3 +233,8 @@ void clear_input(){
     wclear(inputWindow);
     wrefresh(inputWindow);
 }
+
+void print_alarm_status(char msg[]){
+    mvwprintw(dataWindow, 22, 0, msg);
+    wrefresh(dataWindow);
+}

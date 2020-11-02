@@ -13,6 +13,8 @@ void *watch_userinput();
 pthread_t thread_userinput;
 pthread_t thread_tcp_server;
 
+int alarm = 0;
+
 int main(){
     if(init_screens()){
         exit(-1);
@@ -26,7 +28,7 @@ int main(){
         exit(-3);
     }
 
-    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL))
+    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, (void *) &alarm))
     {
         exit(-4);
     }
@@ -114,12 +116,14 @@ void *watch_userinput(){
             }
         }
         else if (menuOption == KEY_F(6)){
-            // Activate alarm
+            alarm = 1;
+            print_alarm_status("# Alarm status: Activated              ");
             clear_input();
             save_in_log("Turn alarm on", "Ok");
         }
         else if (menuOption == KEY_F(7)){
-            // Deactivate alarm
+            alarm = 0;
+            print_alarm_status("# Alarm status: Deactivated            ");
             clear_input();
             save_in_log("Turn alarm off", "Ok");
         }

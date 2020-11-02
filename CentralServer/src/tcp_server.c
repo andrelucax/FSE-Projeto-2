@@ -53,7 +53,7 @@ int wait_for_client(){
 	return 0;
 }
 
-void *handle_tcp_client() {
+void *handle_tcp_client(int *alarm) {
 	while(1){
 		if(wait_for_client()){
 			continue;
@@ -80,6 +80,9 @@ void *handle_tcp_client() {
 		}
 
 		update_values(temperature, humidity, presence, openning, air, lamp);
+		if(alarm){
+			check_alarm(presence, openning);
+		}
 
 		close(client_socket);
 	}
