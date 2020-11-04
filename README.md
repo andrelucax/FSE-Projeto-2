@@ -4,4 +4,18 @@ Andre Lucas de Sousa Pinto - 17/0068251
 
 #
 
-Instrucoes para rodar o servidor central e o servidor distribuido no README dentro de suas respectivas pastas
+Notas:
+
+* Instrucoes para rodar o servidor central e o servidor distribuido no README dentro de suas respectivas pastas;
+
+* Preferencialmente rode o servidor central primeiro.
+
+#
+
+## Images
+
+Start Screen (Central Server)
+![start_screen](./Images/start_screen.jpg)
+
+Running Screen (Central Server)
+![start_screen](./Images/running_screen.jpg)
