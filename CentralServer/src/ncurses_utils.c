@@ -113,8 +113,10 @@ void print_menu()
     mvwprintw(menuWindow, 6 , 0, "Option F4: turn air on");
     mvwprintw(menuWindow, 7 , 0, "Option F5: turn air off");
 
-    mvwprintw(menuWindow, 9 , 0, "Option F6: activate alarm");
-    mvwprintw(menuWindow, 10, 0, "Option F7: deactivate alarm");
+    mvwprintw(menuWindow, 9 , 0, "Option F6: define air temperature");
+
+    mvwprintw(menuWindow, 11, 0, "Option F7: activate alarm");
+    mvwprintw(menuWindow, 12, 0, "Option F8: deactivate alarm");
 
     wrefresh(menuWindow);
 }
@@ -131,6 +133,25 @@ void print_error(){
     mvwprintw(inputWindow, 0, 0, "Error on command");
 
     wrefresh(inputWindow);
+}
+
+float get_temperature(){
+    wclear(inputWindow);
+
+    echo();
+
+    float temperature;
+    mvwprintw(inputWindow, 0, 0, "Reference temperature > ");
+
+    wrefresh(inputWindow);
+    wscanw(inputWindow, "%f", &temperature);
+
+    wclear(inputWindow);
+    wrefresh(inputWindow);
+
+    noecho();
+
+    return temperature;
 }
 
 int get_device_id(int device_type){

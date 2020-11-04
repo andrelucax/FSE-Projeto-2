@@ -10,6 +10,7 @@
 #define AIR 1
 #define PRESENCE 2
 #define OPENNING 3
+#define TEMPERATURE 4
 
 #define LAMP1 RPI_V2_GPIO_P1_11 // KITCHEN
 #define LAMP2 RPI_V2_GPIO_P1_12 // LIVING ROOM

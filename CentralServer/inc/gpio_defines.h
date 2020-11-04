@@ -8,5 +8,6 @@
 #define AIR 1
 #define PRESENCE 2
 #define OPENNING 3
+#define TEMPERATURE 4
 
 #endif // _GPIO_DEFINES_H_

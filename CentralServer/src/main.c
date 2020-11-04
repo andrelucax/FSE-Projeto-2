@@ -115,12 +115,29 @@ void *watch_userinput(){
                 save_in_log("Turn air off", "Ok");
             }
         }
-        else if (menuOption == KEY_F(6)){
+        else if(menuOption == KEY_F(6)){
+            // Define air temperature
+            float air_temperature = get_temperature();
+            if(air_temperature < 0.0f || air_temperature > 100.0f){
+                save_in_log("Define temperature", "Failed (bad temperature)");
+                print_error();
+                continue;
+            }
+            int server_return = send_message_to_server_f(TEMPERATURE, air_temperature);
+            if(server_return){
+                save_in_log("Define temperature", "Failed (server)");
+                print_error();
+            }
+            else{
+                save_in_log("Define temperature", "Ok");
+            }
+        }
+        else if (menuOption == KEY_F(7)){
             alarm = 1;
             clear_input();
             save_in_log("Turn alarm on", "Ok");
         }
-        else if (menuOption == KEY_F(7)){
+        else if (menuOption == KEY_F(8)){
             alarm = 0;
             clear_input();
             save_in_log("Turn alarm off", "Ok");

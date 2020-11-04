@@ -46,6 +46,40 @@ int init_tcp_client() {
 	return 0;
 }
 
+int send_message_to_server_f(int command, float air_temperature){
+	if(init_tcp_client()){
+        return 1;
+    }
+	// Connect
+	if(connect(client_socket, (struct sockaddr *) &server_addr, 
+							sizeof(server_addr)) < 0)
+		return 2;
+
+	int is_ok = 0;
+	if(send(client_socket, (void *) &command, sizeof(int), 0) < 0)
+		is_ok = 3;
+
+    if(send(client_socket, (void *) &air_temperature, sizeof(float), 0) < 0)
+		is_ok = 3;
+
+	int server_ans = 0;
+    if(recv(client_socket, (void *) &server_ans, sizeof(int), 0) < 0){
+        is_ok = 4;
+    }
+
+	close_socket();
+
+    if(is_ok){
+        return is_ok;
+    }
+
+	if(server_ans){
+		return 5;
+	}
+
+    return 0;
+}
+
 int send_message_to_server(int device_type, int device_id, int on_off){
 	if(init_tcp_client()){
         return 1;
