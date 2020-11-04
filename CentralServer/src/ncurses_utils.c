@@ -45,6 +45,9 @@ int init_screens()
     print_menu();
     print_waiting_for_client();
 
+    print_alarm_status("# Alarm status: Deactivated            ");
+    print_air_status("# Air status: Manual                             ");
+
     return 0;
 }
 
