@@ -61,7 +61,9 @@ void *watch_userinput(){
                 print_error("Bad server return");
             }
             else{
-                save_in_log("Turn lamp on", "Ok");
+                char log_msg[50] = "";
+                sprintf(log_msg, "Turn lamp %d on", lamp_id);
+                save_in_log(log_msg, "Ok");
             }
         }
         else if (menuOption == KEY_F(3)){
@@ -78,7 +80,9 @@ void *watch_userinput(){
                 print_error("Bad server return");
             }
             else{
-                save_in_log("Turn lamp off", "Ok");
+                char log_msg[50] = "";
+                sprintf(log_msg, "Turn lamp %d off", lamp_id);
+                save_in_log(log_msg, "Ok");
             }
         }
         else if (menuOption == KEY_F(4)){
@@ -96,7 +100,9 @@ void *watch_userinput(){
             }
             else{
                 print_air_status("# Air status: Manual                             ");
-                save_in_log("Turn air on", "Ok");
+                char log_msg[50] = "";
+                sprintf(log_msg, "Turn air %d on", air_id);
+                save_in_log(log_msg, "Ok");
             }
         }
         else if (menuOption == KEY_F(5)){
@@ -114,7 +120,9 @@ void *watch_userinput(){
             }
             else{
                 print_air_status("# Air status: Manual                             ");
-                save_in_log("Turn air off", "Ok");
+                char log_msg[50] = "";
+                sprintf(log_msg, "Turn air %d off", air_id);
+                save_in_log(log_msg, "Ok");
             }
         }
         else if(menuOption == KEY_F(6)){
@@ -134,7 +142,9 @@ void *watch_userinput(){
                 char msg_air_status[50] = "";
                 sprintf(msg_air_status, "# Air status: Auto, reference: %.2f     ", air_temperature);
                 print_air_status(msg_air_status);
-                save_in_log("Define temperature", "Ok");
+                char log_msg[50] = "";
+                sprintf(log_msg, "Define temperature %.2f", air_temperature);
+                save_in_log(log_msg, "Ok");
             }
         }
         else if (menuOption == KEY_F(7)){
