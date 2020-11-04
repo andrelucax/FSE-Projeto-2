@@ -83,7 +83,7 @@ void *handle_tcp_client() {
 		int msg = 0;
 		if(is_ok){
 			if(device_type == TEMPERATURE){
-				print("## %f\n", temperature);
+				printf("## %f\n", temperature);
 				send(client_socket, (void *) msg, sizeof(int), 0);
 			}
 			else{
