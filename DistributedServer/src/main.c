@@ -10,6 +10,7 @@
 #include "bme280_utils.h"
 #include "data_utils.h"
 #include "tcp_server.h"
+#include "air_controller.h"
 
 void sig_handler(int signum);
 void before_exit();
@@ -17,6 +18,7 @@ void *handle_send_data();
 
 pthread_t thread_tcp_server;
 pthread_t thread_tcp_client;
+pthread_t thread_air_controller;
 
 sem_t sem_send_data;
 
@@ -50,15 +52,23 @@ int main(){
     }
 
     printf("Starting threads...\n");
-    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, NULL)){
-        printf("Failed to create TCP server thread");
+    struct air_mrt _air_mrt;
+    _air_mrt._air_mode = AIR;
+    if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, (void *) &_air_mrt)){
+        printf("Failed to create TCP server thread\n");
         exit(-4);
     }
-    if (pthread_create(&thread_tcp_client, NULL, handle_send_data, NULL)){
-        printf("Failed to create TCP server thread");
-        exit(-4);
-    }
+
     sem_init(&sem_send_data, 0, 0);
+    if (pthread_create(&thread_tcp_client, NULL, handle_send_data, (void *) &_air_mrt)){
+        printf("Failed to create TCP server thread\n");
+        exit(-4);
+    }
+
+    if (pthread_create(&thread_air_controller, NULL, control_temperature, (void *) &_air_mrt)){
+        printf("Failed to create air controller thread\n");
+        exit(-4);
+    }
 
     pthread_join(thread_tcp_server, NULL);
 
@@ -67,13 +77,17 @@ int main(){
     return 0;
 }
 
-void *handle_send_data(){
+void *handle_send_data(void * _air_mrt){
+    struct air_mrt *m_air_mrt = (struct air_mrt *) _air_mrt;
     while(1){
         sem_wait(&sem_send_data);
         double humidity = 0, temperature = 0;
         int presence[2], openning[6], air[2], lamp[4];
         printf("Updating values...\n");
         update_values(&humidity, &temperature, presence, openning, air, lamp);
+
+        m_air_mrt->_temperature = temperature;
+
         printf("Sending data...\n");
         if (send_data(&humidity, &temperature, presence, openning, air, lamp)){
             printf("Failed to send data\n");
@@ -94,6 +108,7 @@ void sig_handler(int signum){
 
 void before_exit(){
     pthread_cancel(thread_tcp_server);
+    pthread_cancel(thread_air_controller);
     close_sockets();
 
     exit(0);

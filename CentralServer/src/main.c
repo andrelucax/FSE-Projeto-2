@@ -78,7 +78,6 @@ void *watch_userinput(){
                 print_error("Bad server return");
             }
             else{
-                print_air_status("# Air status: Manual                             ");
                 save_in_log("Turn lamp off", "Ok");
             }
         }
@@ -114,6 +113,7 @@ void *watch_userinput(){
                 print_error("Bad server return");
             }
             else{
+                print_air_status("# Air status: Manual                             ");
                 save_in_log("Turn air off", "Ok");
             }
         }

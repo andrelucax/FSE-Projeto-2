@@ -4,7 +4,7 @@
 #define MY_SERVER_PORT 10129
 
 int init_tcp_server();
-void *handle_tcp_client();
+void *handle_tcp_client(void *_air_mrt);
 void close_sockets();
 int wait_for_client();
 

@@ -7,6 +7,7 @@
 
 #include "tcp_server.h"
 #include "gpio_utils.h"
+#include "air_controller.h"
 
 int client_socket;
 int server_socket;
@@ -53,7 +54,8 @@ int wait_for_client(){
 	return 0;
 }
 
-void *handle_tcp_client() {
+void *handle_tcp_client(void *_air_mrt) {
+	struct air_mrt *m_air_mrt = (struct air_mrt *) _air_mrt;
 	while(1){
 		if(wait_for_client()){
 			continue;
@@ -70,8 +72,13 @@ void *handle_tcp_client() {
 			if((recv_size = recv(client_socket, (void *) &temperature, sizeof(float), 0)) < 0){
 				is_ok = 0;
 			}
+			m_air_mrt->_air_mode = TEMPERATURE;
+			m_air_mrt->_reference_temperature = temperature;
 		}
 		else{
+			if(device_type == AIR){
+				m_air_mrt->_air_mode = AIR;
+			}
 			if((recv_size = recv(client_socket, (void *) &device_id, sizeof(int), 0)) < 0){
 				is_ok = 0;
 			}
@@ -83,7 +90,6 @@ void *handle_tcp_client() {
 		int msg = 0;
 		if(is_ok){
 			if(device_type == TEMPERATURE){
-				printf("## %f\n", temperature);
 				send(client_socket, (void *) msg, sizeof(int), 0);
 			}
 			else{
