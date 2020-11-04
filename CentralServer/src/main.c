@@ -159,6 +159,8 @@ void *watch_userinput(){
             print_alarm_status("# Alarm status: Deactivated            ");
             save_in_log("Turn alarm off", "Ok");
         }
+
+        save_in_log("Exit app", "Ok");
     }
 
     return 0;
