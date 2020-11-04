@@ -259,3 +259,8 @@ void print_alarm_status(char msg[]){
     mvwprintw(dataWindow, 22, 0, msg);
     wrefresh(dataWindow);
 }
+
+void print_air_status(char msg[]){
+    mvwprintw(dataWindow, 23, 0, msg);
+    wrefresh(dataWindow);
+}

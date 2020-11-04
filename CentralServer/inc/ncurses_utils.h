@@ -15,5 +15,6 @@ void update_values(double temperature, double humidity, int presence[], int open
 void clear_input();
 void print_alarm_status(char msg[]);
 float get_temperature();
+void print_air_status(char msg[]);
 
 #endif /* _NCURSES_UTILS_H_ */

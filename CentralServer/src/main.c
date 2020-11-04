@@ -78,6 +78,7 @@ void *watch_userinput(){
                 print_error();
             }
             else{
+                print_air_status("# Air status: Manual                             ");
                 save_in_log("Turn lamp off", "Ok");
             }
         }
@@ -95,6 +96,7 @@ void *watch_userinput(){
                 print_error();
             }
             else{
+                print_air_status("# Air status: Manual                             ");
                 save_in_log("Turn air on", "Ok");
             }
         }
@@ -129,6 +131,9 @@ void *watch_userinput(){
                 print_error();
             }
             else{
+                char msg_air_status[50] = "";
+                sprintf(msg_air_status, "# Air status: Auto, reference: %.2f     ", air_temperature);
+                print_air_status(msg_air_status);
                 save_in_log("Define temperature", "Ok");
             }
         }
