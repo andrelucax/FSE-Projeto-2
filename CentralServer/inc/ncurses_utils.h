@@ -4,9 +4,8 @@
 #include <ncurses.h>
 
 int init_screens();
-void finish_screens(int goodbye);
+void finish_screens();
 WINDOW *create_newwin(int height, int width, int starty, int startx, int bbox);
-void messageGoodBye();
 void print_menu();
 void print_error(char error[]);
 int get_device_id(int device_type);

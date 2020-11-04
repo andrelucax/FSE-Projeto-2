@@ -39,7 +39,7 @@ int main(){
 
     close_socket();
     close_sockets();
-    finish_screens(1);
+    finish_screens();
 
     return 0;
 }

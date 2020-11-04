@@ -51,7 +51,7 @@ int init_screens()
     return 0;
 }
 
-void finish_screens(int goodbye)
+void finish_screens()
 {
     delwin(menuBoxWindow);
     delwin(menuWindow);
@@ -62,11 +62,6 @@ void finish_screens(int goodbye)
     delwin(dataWindow);
     delwin(dataBoxWindow);
 
-    if (goodbye)
-    {
-        messageGoodBye();
-        getch();
-    }
     endwin();
 }
 
@@ -92,15 +87,6 @@ WINDOW *create_newwin(int height, int width, int starty, int startx, int bbox)
     wrefresh(local_win);
 
     return local_win;
-}
-
-void messageGoodBye()
-{
-    clear();
-    char byeMsg[] = "Good bye! Have a nice day!";
-    char exitMsg[] = "Press any button to exit";
-    mvprintw(LINES / 2 - 1, COLS / 2 - strlen(byeMsg) / 2, byeMsg);
-    mvprintw(LINES / 2, COLS / 2 - strlen(exitMsg) / 2, exitMsg);
 }
 
 void print_menu()
