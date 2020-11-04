@@ -82,11 +82,7 @@ void *handle_tcp_client(int *alarm) {
 
 		update_values(temperature, humidity, presence, openning, air, lamp);
 		if(*alarm){
-			print_alarm_status("# Alarm status: Activated              ");
 			check_alarm(presence, openning);
-		}
-		else{
-			print_alarm_status("# Alarm status: Deactivated            ");
 		}
 
 		close(client_socket);

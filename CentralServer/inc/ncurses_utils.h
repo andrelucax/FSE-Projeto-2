@@ -8,7 +8,7 @@ void finish_screens(int goodbye);
 WINDOW *create_newwin(int height, int width, int starty, int startx, int bbox);
 void messageGoodBye();
 void print_menu();
-void print_error();
+void print_error(char error[]);
 int get_device_id(int device_type);
 void print_waiting_for_client();
 void update_values(double temperature, double humidity, int presence[], int openning[], int air[], int lamp[]);

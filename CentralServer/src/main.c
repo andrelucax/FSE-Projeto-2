@@ -52,13 +52,13 @@ void *watch_userinput(){
             int lamp_id = get_device_id(LAMP);
             if(lamp_id < 1 || lamp_id > 4){
                 save_in_log("Turn lamp on", "Failed (invalid ID)");
-                print_error();
+                print_error("Invalid ID");
                 continue;
             }
             int server_return = send_message_to_server(LAMP, lamp_id, ON);
             if(server_return){
                 save_in_log("Turn lamp on", "Failed (server)");
-                print_error();
+                print_error("Bad server return");
             }
             else{
                 save_in_log("Turn lamp on", "Ok");
@@ -69,13 +69,13 @@ void *watch_userinput(){
             int lamp_id = get_device_id(LAMP);
             if(lamp_id < 1 || lamp_id > 4){
                 save_in_log("Turn lamp off", "Failed (invalid ID)");
-                print_error();
+                print_error("Invalid ID");
                 continue;
             }
             int server_return = send_message_to_server(LAMP, lamp_id, OFF);
             if(server_return){
                 save_in_log("Turn lamp off", "Failed (server)");
-                print_error();
+                print_error("Bad server return");
             }
             else{
                 print_air_status("# Air status: Manual                             ");
@@ -87,13 +87,13 @@ void *watch_userinput(){
             int air_id = get_device_id(AIR);
             if(air_id < 1 || air_id > 2){
                 save_in_log("Turn air on", "Failed (invalid ID)");
-                print_error();
+                print_error("Invalid ID");
                 continue;
             }
             int server_return = send_message_to_server(AIR, air_id, ON);
             if(server_return){
                 save_in_log("Turn air on", "Failed (server)");
-                print_error();
+                print_error("Bad server return");
             }
             else{
                 print_air_status("# Air status: Manual                             ");
@@ -105,13 +105,13 @@ void *watch_userinput(){
             int air_id = get_device_id(AIR);
             if(air_id < 1 || air_id > 2){
                 save_in_log("Turn air off", "Failed (invalid ID)");
-                print_error();
+                print_error("Invalid ID");
                 continue;
             }
             int server_return = send_message_to_server(AIR, air_id, OFF);
             if(server_return){
                 save_in_log("Turn air off", "Failed (server)");
-                print_error();
+                print_error("Bad server return");
             }
             else{
                 save_in_log("Turn air off", "Ok");
@@ -121,14 +121,14 @@ void *watch_userinput(){
             // Define air temperature
             float air_temperature = get_temperature();
             if(air_temperature < 0.0f || air_temperature > 100.0f){
-                save_in_log("Define temperature", "Failed (bad temperature)");
-                print_error();
+                save_in_log("Define temperature", "Failed (invalid temperature)");
+                print_error("Invalid temperature");
                 continue;
             }
             int server_return = send_message_to_server_f(TEMPERATURE, air_temperature);
             if(server_return){
                 save_in_log("Define temperature", "Failed (server)");
-                print_error();
+                print_error("Bad server return");
             }
             else{
                 char msg_air_status[50] = "";
@@ -140,11 +140,13 @@ void *watch_userinput(){
         else if (menuOption == KEY_F(7)){
             alarm = 1;
             clear_input();
+            print_alarm_status("# Alarm status: Activated              ");
             save_in_log("Turn alarm on", "Ok");
         }
         else if (menuOption == KEY_F(8)){
             alarm = 0;
             clear_input();
+            print_alarm_status("# Alarm status: Deactivated            ");
             save_in_log("Turn alarm off", "Ok");
         }
     }

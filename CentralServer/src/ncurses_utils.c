@@ -130,10 +130,10 @@ void print_waiting_for_client(){
     wrefresh(dataWindow);
 }
 
-void print_error(){
+void print_error(char error[]){
     wclear(inputWindow);
 
-    mvwprintw(inputWindow, 0, 0, "Error on command");
+    mvwprintw(inputWindow, 0, 0, error);
 
     wrefresh(inputWindow);
 }
