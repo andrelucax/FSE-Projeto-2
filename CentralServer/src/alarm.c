@@ -29,6 +29,17 @@ void check_alarm(int presence[], int openning[]){
     for(int i = 0; i < 6; i++){
         if(g_openning[i] != openning[i]){
             g_openning[i] = openning[i];
+            if(g_openning[i] == ON){
+                // Log alarm
+                char log_msg[50] = "";
+                sprintf(log_msg, "Detected openning in sensor %d", i+1);
+                save_alarm_in_log(log_msg);
+            }
+        }
+        if(!g_is_playing_sound && g_openning[i] == ON){
+            g_is_playing_sound = 1;
+            // Play sound
+            sem_post(&sem_alarm);
         }
     }
 }
