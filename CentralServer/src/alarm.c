@@ -48,7 +48,7 @@ void *handle_alarm(){
     sem_init(&sem_alarm, 0, 0);
     while(1){
         sem_wait(&sem_alarm);
-        system("omxplayer yamete.mp3");
+        system("omxplayer yamete.mp3 > /dev/null 2>&1");
         // When stop sound
         g_is_playing_sound = 0;
     }
