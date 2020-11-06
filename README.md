@@ -10,6 +10,8 @@ Notas:
 
 * Preferencialmente rode o servidor central primeiro.
 
+* O programa gera 2 logs, um arquivo guardando os comandos do usuario e o outro guardando o acionamento de alarmes. Ao serem gerados ficarao na pasta CentralServer
+
 #
 
 ## Images
