@@ -43,6 +43,7 @@ int main(){
     pthread_join(thread_userinput, NULL);
 
     pthread_cancel(thread_tcp_server);
+    pthread_cancel(thread_alarm);
 
     close_socket();
     close_sockets();
