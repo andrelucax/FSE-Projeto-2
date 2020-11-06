@@ -6,12 +6,14 @@
 #include "tcp_client.h"
 #include "gpio_defines.h"
 #include "tcp_server.h"
+#include "alarm.h"
 #include "log.h"
 
 void *watch_userinput();
 
 pthread_t thread_userinput;
 pthread_t thread_tcp_server;
+pthread_t thread_alarm;
 
 int alarm = 0;
 
@@ -29,6 +31,11 @@ int main(){
     }
 
     if (pthread_create(&thread_tcp_server, NULL, handle_tcp_client, (void *) &alarm))
+    {
+        exit(-4);
+    }
+
+    if (pthread_create(&thread_alarm, NULL, handle_alarm, NULL))
     {
         exit(-4);
     }
